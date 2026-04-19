@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carina Correjidor — .NET Developer & AI Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0F0B1A;
+    --ink2: #2A2440;
+    --muted: #6B6480;
+    --bg: #FAF8FF;
+    --bg2: #F0ECF9;
+    --accent: #5C2D9E;
+    --accent2: #8B4FD8;
+    --gold: #C9920A;
+    --gold2: #F2C94C;
+    --surface: #FFFFFF;
+    --border: rgba(92,45,158,0.12);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(250,248,255,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 17px;
+    color: var(--accent); letter-spacing: -0.5px;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 13px; font-weight: 400; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-size: 13px; font-weight: 500;
+    color: var(--surface);
+    background: var(--accent);
+    padding: 9px 20px; border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(139,79,216,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,146,10,0.07) 0%, transparent 60%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(92,45,158,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(92,45,158,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-left { position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(92,45,158,0.08);
+    border: 1px solid rgba(92,45,158,0.2);
+    color: var(--accent); font-size: 11.5px; font-weight: 500;
+    padding: 5px 13px; border-radius: 100px;
+    margin-bottom: 28px; letter-spacing: 0.5px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(38px, 5vw, 62px);
+    font-weight: 800; line-height: 1.05;
+    letter-spacing: -2px; color: var(--ink);
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--gold) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    margin-top: 22px; font-size: 16px; line-height: 1.7;
+    color: var(--muted); max-width: 480px; font-weight: 300;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-actions {
+    margin-top: 36px; display: flex; gap: 14px; align-items: center;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-primary {
+    display: inline-block; padding: 14px 28px;
+    background: var(--accent); color: #fff;
+    font-size: 14px; font-weight: 500; border-radius: 100px;
+    text-decoration: none; letter-spacing: 0.2px;
+    transition: all 0.2s;
+    box-shadow: 0 8px 24px rgba(92,45,158,0.3);
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(92,45,158,0.4); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 14px; font-weight: 400; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--accent); }
+  .btn-secondary svg { transition: transform 0.2s; }
+  .btn-secondary:hover svg { transform: translateX(3px); }
+
+  .hero-right {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center; align-items: center;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    width: 100%; max-width: 380px;
+    box-shadow: 0 20px 60px rgba(92,45,158,0.1);
+    position: relative;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; inset: -1px; border-radius: 24px;
+    background: linear-gradient(135deg, rgba(92,45,158,0.2), transparent 50%, rgba(201,146,10,0.1));
+    z-index: -1;
+  }
+  .card-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: #fff;
+    margin-bottom: 18px;
+  }
+  .card-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; }
+  .card-role { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .card-stats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px; margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--accent); }
+  .stat-lbl { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+  .card-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+  .cbadge {
+    font-size: 10px; padding: 4px 10px; border-radius: 100px;
+    border: 1px solid var(--border); color: var(--muted);
+    background: var(--bg2);
+  }
+  .cbadge.accent { border-color: rgba(92,45,158,0.3); color: var(--accent); background: rgba(92,45,158,0.06); }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--accent); padding: 14px 0; overflow: hidden;
+    position: relative;
+  }
+  .ticker-inner {
+    display: flex; gap: 60px; width: max-content;
+    animation: ticker 22s linear infinite;
+  }
+  .ticker-item {
+    font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.7); white-space: nowrap; letter-spacing: 0.5px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .ticker-item::after { content: '◆'; color: rgba(255,255,255,0.3); font-size: 8px; }
+  @keyframes ticker { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 60px; position: relative; }
+  .section-tag {
+    font-size: 11px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700; letter-spacing: -1.5px; line-height: 1.1;
+    color: var(--ink);
+  }
+  .section-sub { font-size: 15px; color: var(--muted); margin-top: 12px; max-width: 520px; line-height: 1.7; font-weight: 300; }
+
+  /* ── SERVICES ── */
+  #servicios { background: var(--bg); }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px;
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: default;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(92,45,158,0.12); }
+  .service-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(92,45,158,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .service-card.featured {
+    background: linear-gradient(135deg, var(--accent) 0%, #3D1A7A 100%);
+    border-color: transparent;
+  }
+  .service-card.featured * { color: rgba(255,255,255,0.85) !important; }
+  .service-card.featured .service-title { color: #fff !important; }
+  .service-num {
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+    color: var(--accent); letter-spacing: 2px; margin-bottom: 20px;
+  }
+  .service-card.featured .service-num { color: rgba(255,255,255,0.4) !important; }
+  .service-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(92,45,158,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 18px;
+  }
+  .service-card.featured .service-icon { background: rgba(255,255,255,0.15); }
+  .service-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+  .service-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+  .stag {
+    font-size: 10px; padding: 3px 9px; border-radius: 100px;
+    background: var(--bg2); color: var(--muted); border: 1px solid var(--border);
+  }
+  .service-card.featured .stag { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+
+  /* ── ABOUT ── */
+  #sobre-mi { background: var(--bg2); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+  .about-left { position: relative; }
+  .about-visual {
+    background: linear-gradient(135deg, var(--accent) 0%, #7B3DC8 50%, var(--gold) 100%);
+    border-radius: 24px; height: 380px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-visual-inner {
+    font-family: 'Syne', sans-serif; font-size: 80px; font-weight: 800;
+    color: rgba(255,255,255,0.15); letter-spacing: -4px; line-height: 1;
+    text-align: center; user-select: none;
+  }
+  .about-float {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 16px 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  }
+  .about-float-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--accent); }
+  .about-float-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .about-right {}
+  .about-text { font-size: 15px; line-height: 1.8; color: var(--muted); font-weight: 300; }
+  .about-text strong { color: var(--ink); font-weight: 500; }
+  .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
+  .highlight-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px;
+  }
+  .highlight-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-bottom: 8px; }
+  .highlight-title { font-size: 12px; font-weight: 500; color: var(--ink); }
+  .highlight-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* ── STACK ── */
+  #stack { background: var(--bg); }
+  .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
+  .stack-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 16px;
+    display: flex; align-items: center; gap: 12px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .stack-item:hover { border-color: rgba(92,45,158,0.35); transform: translateY(-2px); }
+  .stack-dot {
+    width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .stack-name { font-size: 13px; font-weight: 500; }
+  .stack-type { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+
+  /* ── EDUCATION ── */
+  #formacion { background: var(--accent); }
+  #formacion .section-tag { color: rgba(255,255,255,0.5); }
+  #formacion .section-title { color: #fff; }
+  #formacion .section-sub { color: rgba(255,255,255,0.6); }
+  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+  .edu-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px; padding: 26px;
+    transition: background 0.2s;
+  }
+  .edu-card:hover { background: rgba(255,255,255,0.13); }
+  .edu-card.gold { border-color: rgba(242,201,76,0.4); background: rgba(242,201,76,0.08); }
+  .edu-year { font-size: 10.5px; color: rgba(255,255,255,0.4); letter-spacing: 1px; margin-bottom: 10px; }
+  .edu-card.gold .edu-year { color: rgba(242,201,76,0.7); }
+  .edu-card-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .edu-card-inst { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+  .edu-card.gold .edu-card-inst { color: rgba(242,201,76,0.6); }
+
+  /* ── CONTACT ── */
+  #contacto { background: var(--bg); }
+  .contact-wrapper {
+    max-width: 640px; margin: 0 auto; text-align: center;
+  }
+  .contact-wrapper .section-title { margin-bottom: 16px; }
+  .contact-wrapper .section-sub { margin: 0 auto 40px; }
+  .contact-methods { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .contact-method {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 100px; padding: 12px 22px;
+    font-size: 13px; color: var(--ink); text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-method:hover { border-color: var(--accent); transform: translateY(-2px); color: var(--accent); }
+  .contact-method span { font-size: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 28px 60px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--muted);
+  }
+  footer strong { color: var(--ink); font-weight: 500; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 40px; }
+    .hero-right { display: none; }
+    section { padding: 70px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-visual { height: 200px; }
+    .stack-grid { grid-template-columns: 1fr 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .services-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">CC</div>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#stack">Stack</a>
+    <a href="#formacion">Formación</a>
+    <a href="cv.html">CV</a>
+  </div>
+  <a href="mailto:carinacorrejidor@outlook.com" class="nav-cta">Contactar →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-left">
+    <div class="hero-tag">Disponible para proyectos freelance</div>
+    <h1>Desarrollo .NET<br>& <em>soluciones IA</em><br>para el sector<br>financiero.</h1>
+    <p class="hero-sub">Más de 17 años construyendo sistemas bancarios robustos. Ahora integrando inteligencia artificial donde más importa: en la lógica del negocio.</p>
+    <div class="hero-actions">
+      <a href="#servicios" class="btn-primary">Ver servicios</a>
+      <a href="#contacto" class="btn-secondary">
+        Trabajemos juntos
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="card-avatar">CC</div>
+      <div class="card-name">Carina Correjidor</div>
+      <div class="card-role">Sr. .NET Developer · IA · Banca</div>
+      <div class="card-stats">
+        <div><div class="stat-num">17+</div><div class="stat-lbl">años de exp.</div></div>
+        <div><div class="stat-num">8+</div><div class="stat-lbl">empresas</div></div>
+        <div><div class="stat-num">∞</div><div class="stat-lbl">líneas de C#</div></div>
+      </div>
+      <div class="card-badges">
+        <span class="cbadge accent">.NET Core</span>
+        <span class="cbadge accent">React</span>
+        <span class="cbadge accent">Clean Arch.</span>
+        <span class="cbadge">SQL Server</span>
+        <span class="cbadge">Azure</span>
+        <span class="cbadge">Maestría IA ✦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">.NET Core</span>
+    <span class="ticker-item">Clean Architecture</span>
+    <span class="ticker-item">React + TypeScript</span>
+    <span class="ticker-item">Web API REST</span>
+    <span class="ticker-item">Entity Framework</span>
+    <span class="ticker-item">SQL Server</span>
+    <span class="ticker-item">Inteligencia Artificial</span>
+    <span class="ticker-item">Azure</span>
+    <span class="ticker-item">Ciberseguridad</span>
+    <span class="ticker-item">Sector Bancario</span>
+    <span class="ticker-item">.NET Core</span>
+    <span class="ticker-item">Clean Architecture</span>
+    <span class="ticker-item">React + TypeScript</span>
+    <span class="ticker-item">Web API REST</span>
+    <span class="ticker-item">Entity Framework</span>
+    <span class="ticker-item">SQL Server</span>
+    <span class="ticker-item">Inteligencia Artificial</span>
+    <span class="ticker-item">Azure</span>
+    <span class="ticker-item">Ciberseguridad</span>
+    <span class="ticker-item">Sector Bancario</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="services-header">
+    <div>
+      <div class="section-tag">Servicios</div>
+      <h2 class="section-title">¿En qué puedo<br>ayudarte?</h2>
+    </div>
+    <p class="section-sub" style="max-width:320px">Soluciones pensadas para empresas que necesitan confiabilidad y modernización tecnológica.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card featured">
+      <div class="service-num">01</div>
+      <div class="service-icon">🤖</div>
+      <div class="service-title">Integración de IA en sistemas .NET</div>
+      <div class="service-desc">Incorporo capacidades de IA —agentes, RAG, scoring— en tus aplicaciones .NET existentes sin reescribir desde cero.</div>
+      <div class="service-tags">
+        <span class="stag">Semantic Kernel</span>
+        <span class="stag">Azure OpenAI</span>
+        <span class="stag">Agentes</span>
+        <span class="stag">RAG</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">⚙️</div>
+      <div class="service-title">Desarrollo de APIs y backends .NET</div>
+      <div class="service-desc">Web APIs REST robustas con .NET Core, Clean Architecture, EF Core y SQL Server. Con tests, documentación Swagger y despliegue.</div>
+      <div class="service-tags">
+        <span class="stag">.NET 8</span>
+        <span class="stag">Web API</span>
+        <span class="stag">EF Core</span>
+        <span class="stag">Clean Arch.</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">🎨</div>
+      <div class="service-title">Frontends React + TypeScript</div>
+      <div class="service-desc">Interfaces modernas, performantes y mantenibles. Integradas con tus APIs o con sistemas de diseño existentes.</div>
+      <div class="service-tags">
+        <span class="stag">React</span>
+        <span class="stag">TypeScript</span>
+        <span class="stag">Blazor</span>
+        <span class="stag">Angular</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">🏦</div>
+      <div class="service-title">Consultoría en sistemas bancarios</div>
+      <div class="service-desc">17 años en bancos y fintech. Asesoramiento en arquitectura, integración con APIs bancarias, seguridad y cumplimiento normativo.</div>
+      <div class="service-tags">
+        <span class="stag">Core bancario</span>
+        <span class="stag">Fideicomisos</span>
+        <span class="stag">APIs financieras</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon">🛡️</div>
+      <div class="service-title">Auditoría y ciberseguridad de apps</div>
+      <div class="service-desc">Revisión de aplicaciones web con foco en vulnerabilidades, autenticación segura, y mejores prácticas en el stack .NET.</div>
+      <div class="service-tags">
+        <span class="stag">OWASP</span>
+        <span class="stag">Auth</span>
+        <span class="stag">Ciberseguridad UP</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-icon">📊</div>
+      <div class="service-title">Data Warehouse & reporting</div>
+      <div class="service-desc">Diseño e implementación de DWH, procesos ETL y dashboards para análisis de datos en organizaciones financieras.</div>
+      <div class="service-tags">
+        <span class="stag">SQL Server</span>
+        <span class="stag">ETL</span>
+        <span class="stag">Power BI</span>
+        <span class="stag">Reporting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MI -->
+<section id="sobre-mi">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="about-visual">
+        <div class="about-visual-inner">.NET<br>&amp;<br>AI</div>
+      </div>
+      <div class="about-float">
+        <div class="about-float-num">2025</div>
+        <div class="about-float-lbl">Maestría IA — UdeSA<br>en curso</div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="section-tag">Sobre mí</div>
+      <h2 class="section-title">Experiencia bancaria.<br>Visión de IA.</h2>
+      <p class="about-text" style="margin-top:20px">
+        Soy <strong>Carina Correjidor</strong>, desarrolladora con más de 17 años trabajando en sistemas financieros para bancos como BNA, Banco de Valores, Banco Hipotecario y proyectos para Macro, Ciudad y Columbia.<br><br>
+        Lo que me diferencia hoy: estoy cursando la <strong>Maestría en Inteligencia Artificial en la Universidad de San Andrés</strong>, lo que me permite combinar experiencia real en producción bancaria con las últimas técnicas de IA aplicada. No vendo IA genérica — la integro donde tiene sentido real en tu sistema.
+      </p>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <div class="highlight-title">Banca & finanzas</div>
+          <div class="highlight-sub">BNA, Banco de Valores, Hipotecario, core bancario Cobis</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <div class="highlight-title">Maestría en IA</div>
+          <div class="highlight-sub">Universidad de San Andrés, en curso desde 2025</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <div class="highlight-title">Ciberseguridad</div>
+          <div class="highlight-sub">Diplomatura Universidad de Palermo, 2022</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-dot"></div>
+          <div class="highlight-title">Liderazgo técnico</div>
+          <div class="highlight-sub">Inducción de equipos, decisiones de arquitectura, scrum</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="section-tag">Stack técnico</div>
+  <h2 class="section-title">Las herramientas<br>con las que trabajo.</h2>
+  <div class="stack-grid">
+    <div class="stack-item"><div class="stack-dot" style="background:#E8EAF6">🔷</div><div><div class="stack-name">.NET Core / 8</div><div class="stack-type">Backend principal</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#E3F2FD">⚡</div><div><div class="stack-name">C# & Web API REST</div><div class="stack-type">Lenguaje & APIs</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#E0F7FA">⚛️</div><div><div class="stack-name">React + TypeScript</div><div class="stack-type">Frontend</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#F3E5F5">🏗️</div><div><div class="stack-name">Clean Architecture</div><div class="stack-type">Arquitectura</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#FFF3E0">🗄️</div><div><div class="stack-name">SQL Server & EF Core</div><div class="stack-type">Base de datos</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#E8F5E9">☁️</div><div><div class="stack-name">Microsoft Azure</div><div class="stack-type">Cloud · AZ-900</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#FCE4EC">🤖</div><div><div class="stack-name">Semantic Kernel</div><div class="stack-type">IA & agentes .NET</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#F9FBE7">🔺</div><div><div class="stack-name">Angular</div><div class="stack-type">Frontend alternativo</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#EDE7F6">🔐</div><div><div class="stack-name">Ciberseguridad</div><div class="stack-type">OWASP · Auth · UP</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#E0F2F1">📊</div><div><div class="stack-name">Data Warehouse & ETL</div><div class="stack-type">Analytics · UTN</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#FFF8E1">📋</div><div><div class="stack-name">Swagger / OpenAPI</div><div class="stack-type">Documentación APIs</div></div></div>
+    <div class="stack-item"><div class="stack-dot" style="background:#E8EAF6">🔄</div><div><div class="stack-name">Scrum / Agile</div><div class="stack-type">Marco de trabajo</div></div></div>
+  </div>
+</section>
+
+<!-- FORMACION -->
+<section id="formacion">
+  <div class="section-tag">Formación</div>
+  <h2 class="section-title">Credenciales que<br>respaldan el trabajo.</h2>
+  <p class="section-sub">Combinación de ingeniería clásica, especialización financiera y formación de vanguardia en IA.</p>
+  <div class="edu-grid">
+    <div class="edu-card gold">
+      <div class="edu-year">2025 — ACTUAL</div>
+      <div class="edu-card-title">Maestría en Inteligencia Artificial</div>
+      <div class="edu-card-inst">Universidad de San Andrés</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2022</div>
+      <div class="edu-card-title">Diplomatura en Ciberseguridad</div>
+      <div class="edu-card-inst">Universidad de Palermo</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2022</div>
+      <div class="edu-card-title">Especialista en Data Warehouse & ETL</div>
+      <div class="edu-card-inst">UTN FRBA · e-Learning</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2020</div>
+      <div class="edu-card-title">Azure Fundamentals AZ-900</div>
+      <div class="edu-card-inst">Microsoft</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2020</div>
+      <div class="edu-card-title">ASP.NET Core MVC Web Apps</div>
+      <div class="edu-card-inst">Educación IT</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">1997 — 2003</div>
+      <div class="edu-card-title">Ing. en Sistemas de Información</div>
+      <div class="edu-card-inst">Universidad Tecnológica Nacional</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-wrapper">
+    <div class="section-tag">Contacto</div>
+    <h2 class="section-title">Hablemos de<br>tu proyecto.</h2>
+    <p class="section-sub">Consultame sin compromiso. Respondo en menos de 24 horas hábiles.</p>
+    <div class="contact-methods">
+      <a href="mailto:carinacorrejidor@outlook.com" class="contact-method">
+        <span>✉</span> carinacorrejidor@outlook.com
+      </a>
+      <a href="https://linkedin.com/in/carinacorrejidor" target="_blank" class="contact-method">
+        <span>🔗</span> LinkedIn
+      </a>
+      <a href="cv.html" class="contact-method">
+        <span>📄</span> Ver CV
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 <strong>Carina Correjidor</strong> — Sr. .NET Developer & AI Solutions</div>
+  <div>Villa Crespo, Buenos Aires · Argentina</div>
+</footer>
+
+</body>
+</html>

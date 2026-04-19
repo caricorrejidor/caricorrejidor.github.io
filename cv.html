@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carina Correjidor — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #F7F9F8;
+    --surf:    #D4EEEE;
+    --surf2:   #C0E4E4;
+    --border:  #8ABFBF;
+    --border2: #4A9A9A;
+    --rose:    #0D6B6B;
+    --rose2:   #0A4A4A;
+    --ink:     #061E1E;
+    --ink2:    #0F2E2E;
+    --ink3:    #1A4A4A;
+    --muted:   #2A7070;
+    --mono:    'JetBrains Mono', monospace;
+    --sans:    'DM Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink2);
+    font-family: var(--sans);
+    font-size: 11.6px;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  @page { size: A4; margin: 0; }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--bg);
+    padding: 8.5mm 11mm 8.5mm;
+    border-left: 7px solid #C89800;
+    border-top: 3px solid #0D6B6B;
+  }
+
+  /* ── HEADER ── */
+  .prompt {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .name {
+    font-family: var(--mono);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .name span { color: var(--rose); }
+  .role {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: end;
+    padding-bottom: 11px;
+    border-bottom: 1.5px solid var(--border);
+    margin-bottom: 9px;
+  }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+  .badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    padding: 2px 10px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    border-radius: 20px;
+  }
+  .badge.hi  { border-color: var(--rose);  color: var(--rose);  background: rgba(184,112,80,.06); }
+  .badge.hi2 { border-color: #C89800; color: #7A5800; background: rgba(200,160,32,.07); }
+
+  /* ── PROFILE ── */
+  .profile {
+    font-size: 11px;
+    color: var(--ink3);
+    line-height: 1.66;
+    background: var(--surf);
+    border: none;
+    border-left: 3px solid var(--rose);
+    padding: 8px 11px;
+    margin-bottom: 9px;
+    font-weight: 300;
+  }
+  .profile strong { color: var(--ink); font-weight: 600; }
+
+  /* ── SECTION LABEL ── */
+  .sec {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--rose2);
+    letter-spacing: 0.18em;
+    border-bottom: 1.5px solid var(--border);
+    padding-bottom: 3px;
+    margin-bottom: 7px;
+    margin-top: 9px;
+  }
+  .sec::before { content: '// '; color: var(--border2); }
+
+  /* ── JOB ── */
+  .job { margin-bottom: 11px; }
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 2px;
+  }
+  .job-title {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .job-period {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    background: var(--surf2);
+    padding: 2px 9px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .job-company {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--rose);
+    margin-bottom: 3px;
+    font-weight: 500;
+  }
+  .bullets { list-style: none; margin-bottom: 7px; }
+  .bullets li {
+    font-size: 11px;
+    color: var(--ink3);
+    line-height: 1.62;
+    padding: 1px 0 1px 16px;
+    position: relative;
+    font-weight: 300;
+  }
+  .bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 1px;
+    color: var(--rose);
+    font-size: 16px;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+  .bullets li strong { color: var(--ink); font-weight: 600; }
+  .stack-inline {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+  }
+  .stack-inline::before { content: '[ '; color: var(--border2); }
+  .stack-inline::after  { content: ' ]'; color: var(--border2); }
+
+  /* ── PREV ── */
+  .prev { display: flex; flex-direction: column; gap: 5px; }
+  .prev-item { font-size: 11px; font-weight: 300; color: var(--ink3); }
+  .prev-item strong { color: var(--ink2); font-weight: 600; }
+
+  /* ── BOTTOM GRID ── */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 12px;
+    margin-top: 3px;
+  }
+
+  /* ── STACK OPCIÓN 3: grid 2x2 con borde izquierdo ── */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 2px;
+  }
+  .stack-cell {
+    padding: 6px 8px;
+    background: var(--surf);
+    border-left: 2px solid var(--rose);
+  }
+  .stack-cell.ia {
+    border-left-color: #C89800;
+    background: #FFF4C0;
+  }
+  .stack-cat {
+    font-family: var(--mono);
+    font-size: 7.5px;
+    color: var(--rose2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .stack-cell.ia .stack-cat { color: #8A6400; }
+  .stack-vals {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--ink3);
+    line-height: 1.6;
+  }
+  .stack-cell.ia .stack-vals { color: #6A4800; }
+
+  /* ── EDU OPCIÓN 3: lista limpia sin marco ── */
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    border-bottom: 1px dotted var(--border);
+  }
+  .edu-row:last-child { border: none; }
+  .edu-row-title {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--ink2);
+    line-height: 1.4;
+  }
+  .edu-row-title.star { color: #C89000; }
+  .edu-row-year {
+    font-family: var(--mono);
+    font-size: 8.5px;
+    color: var(--muted);
+    white-space: nowrap;
+    margin-left: 8px;
+    flex-shrink: 0;
+  }
+
+  /* ── CERT + LANG ── */
+  .cert-inline {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    color: var(--ink3);
+    line-height: 1.72;
+    margin-top: 4px;
+  }
+  .lang-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .lang-row:last-child { border: none; }
+  .lang-row strong { color: var(--ink2); font-weight: 600; }
+  .lang-row span { color: var(--muted); }
+
+  .contact-row {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    margin-bottom: 9px;
+    padding-bottom: 9px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .contact-row a { color: var(--rose); text-decoration: none; }
+  @media print {
+    html, body { background: var(--bg) !important; }
+    .page { border-left: 7px solid #C89800 !important; border-top: 3px solid #0D6B6B !important; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="prompt">// senior_developer</div>
+  <div class="name">CARINA <span>CORREJIDOR</span></div>
+  <div class="role">Full Stack Developer · Fintech &amp; Banca &nbsp;·&nbsp; Buenos Aires</div>
+
+  <div class="contact-row">
+      <span>carinacorrejidor@outlook.com</span>
+      <span>&nbsp;·&nbsp;</span>
+      <a href="https://linkedin.com/in/carinacorrejidor">linkedin.com/in/carinacorrejidor</a>
+      <span>&nbsp;·&nbsp;</span>
+      <a href="index.html">sitio web</a>
+  </div>
+
+  <!-- PERFIL -->
+  <div class="profile">
+    Desarrollo de soluciones financieras para los principales bancos de Argentina — desde APIs REST hasta interfaces Blazor y React. Especializada en <strong>Clean Architecture</strong> y ecosistema <strong>.NET</strong>, con foco en calidad, performance y seguridad.<br>
+    Cursando <strong>Maestría en Inteligencia Artificial</strong>, aplicando IA al ciclo completo de desarrollo.<br>Disponible para proyectos y contratos freelance.
+  </div>
+
+  <!-- EXPERIENCIA -->
+  <div class="sec" style="margin-top: 14px;">Experiencia</div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Software Developer · Referente Técnico</div>
+      <div class="job-period">ago 2022 — presente</div>
+    </div>
+    <div class="job-company">Banco de la Nación Argentina</div>
+    <ul class="bullets">
+      <li>Lideré end-to-end <strong>5 productos crediticios digitales</strong>: Tienda BNA, MAS Autos, MAS Agro, AL Préstamos y Más Personas.</li>
+      <li>Desarrollé <strong>backoffice institucional en Blazor</strong> centralizando factibilidades crediticias + <strong>PoC de IA con base de datos vectorial</strong>.</li>
+      <li>Implementación de integraciones mediante webhooks y manejo de idempotencia para procesos críticos de negocio.</li>
+      <li>Referente técnica y funcional: backlog, sprints y coordinación entre producto, ops y compliance.</li>
+    </ul>
+    <div class="stack-inline">.NET · Blazor · Clean Architecture · React · TypeScript · SQL Server · GitHub Copilot</div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Software Developer · Líder Técnico</div>
+      <div class="job-period">oct 2021 — jul 2022</div>
+    </div>
+    <div class="job-company">Practia Global</div>
+    <ul class="bullets">
+      <li>Liderazgo técnico de soluciones web para <strong>sector energético</strong> en consultora global. Mentoría e inducción del equipo en el stack completo.</li>
+    </ul>
+    <div class="stack-inline">.NET · Angular · Angular Material · SQL Server</div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Software Developer</div>
+      <div class="job-period">mar 2020 — sep 2021</div>
+    </div>
+    <div class="job-company">Accusys Technology</div>
+    <ul class="bullets">
+      <li>Core Cobis para <strong>5 entidades financieras</strong>: Banco Macro, Ciudad, Columbia, BTS y Facebank. Módulos de cuentas corrientes, eCheques e integración Coelsa.</li>
+    </ul>
+    <div class="stack-inline">.NET · Cobis · Sybase · Scrum</div>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-title">Software Developer</div>
+      <div class="job-period">mar 2018 — feb 2020</div>
+    </div>
+    <div class="job-company">Banco de Valores S.A.</div>
+    <ul class="bullets">
+      <li>Apps .NET para <strong>administración de fideicomisos</strong> en banco de mercado de capitales. APIs REST con Design Patterns adoptados por el equipo.</li>
+    </ul>
+    <div class="stack-inline">.NET · API REST · Design Patterns · SQL Server</div>
+  </div>
+
+  <!-- EXPERIENCIA PREVIA -->
+  <div class="sec">Experiencia previa</div>
+  <div class="prev">
+    <div class="prev-item"><strong>Software Developer · Banco Hipotecario</strong> &nbsp;(2013–2018) — .Net · Java Web · Oracle · SQL Server</div>
+    <div class="prev-item"><strong>Software Developer · Everis NTT Data</strong> &nbsp;(2007–2013) — 6+ clientes: BBVA, Telefónica, YPF, Cencosud, Perez Companc</div>
+  </div>
+
+  <!-- BOTTOM GRID -->
+  <div class="bottom-grid">
+
+    <!-- STACK: opción 3 — grid 2x2 con borde izquierdo -->
+    <div>
+      <div class="sec">Stack Técnico</div>
+      <div class="stack-grid">
+        <div class="stack-cell">
+          <div class="stack-cat">backend</div>
+          <div class="stack-vals">.NET · Node.js · Python · Java · Clean Arch · REST APIs</div>
+        </div>
+        <div class="stack-cell">
+          <div class="stack-cat">frontend</div>
+          <div class="stack-vals">Blazor · React · TypeScript · Angular · Angular Material</div>
+        </div>
+        <div class="stack-cell">
+          <div class="stack-cat">datos</div>
+          <div class="stack-vals">SQL Server · PostgreSQL · Oracle · Sybase · DWH/ETL</div>
+        </div>
+        <div class="stack-cell ia">
+          <div class="stack-cat">ia &amp; herramientas</div>
+          <div class="stack-vals">AI/ML · Skills IA · MCP · Agent · GitHub Copilot · Vector DB</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDU: opción 3 — lista con dotted border, sin marco -->
+    <div>
+      <div class="sec">Educación</div>
+      <div class="edu-row">
+        <div class="edu-row-title star">★ Maestría en IA (en curso)</div>
+        <div class="edu-row-year">UdeSA · 2025+</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-row-title">Diplomatura en Ciberseguridad</div>
+        <div class="edu-row-year">UP · 2022</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-row-title">Ingeniería en Sistemas</div>
+        <div class="edu-row-year">UTN</div>
+      </div>
+
+      <div class="sec" style="margin-top:8px;">Certificaciones</div>
+      <div class="cert-inline">
+        AZ-900 Microsoft Azure<br>
+        DWH &amp; ETL · UTN FRBA<br>
+        ReactJS · ASP.NET Core MVC
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

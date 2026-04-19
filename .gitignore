@@ -1,0 +1,26 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backups y temporales
+*.bak
+*.tmp
+*~
+
+# Builds locales (si en el futuro agregás tooling)
+node_modules/
+dist/
+build/
+
+# Archivos sensibles
+.env
+.env.local
+*.pem
+*.key
