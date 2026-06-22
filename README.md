@@ -31,7 +31,7 @@ El proyecto Astro vive en `sitio/`. En la raíz quedan solo este README y la con
     │   ├── components/            Header, Footer + cada sección de la landing
     │   ├── content/blog/          los posts en Markdown
     │   └── styles/                global.css (blog) · landing.css (landing)
-    └── public/                    cv.html, favicon.svg (mascota), avatar.svg
+    └── public/                    favicon.svg (mascota), avatar.svg
 ```
 
 ## 🚀 Desarrollo
@@ -63,7 +63,6 @@ Requiere *Settings → Pages → Source = GitHub Actions*.
 | Menú / pie de página | `Header.astro` / `Footer.astro` |
 | Posts del blog | `sitio/src/content/blog/*.md` |
 | Estilos landing / blog | `sitio/src/styles/landing.css` · `global.css` |
-| El CV | `sitio/public/cv.html` |
 
 ## 📌 Pendientes
 
