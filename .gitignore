@@ -14,10 +14,11 @@ desktop.ini
 *.tmp
 *~
 
-# Builds locales (si en el futuro agregás tooling)
+# Builds locales y tooling de Astro
 node_modules/
 dist/
 build/
+.astro/
 
 # Archivos sensibles
 .env

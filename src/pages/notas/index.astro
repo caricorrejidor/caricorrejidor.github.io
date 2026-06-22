@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const fmt = (d) =>
+  d.toLocaleDateString('es-AR', { year: 'numeric', month: 'short', day: 'numeric' });
+
+// Tiempo de lectura estimado (~200 palabras/min)
+const readingTime = (post) => {
+  const words = (post.body || '').trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+};
+
+// Degradé de portada por categoría — todos arrancan del violeta de marca
+const covers = {
+  Arquitectura: 'linear-gradient(135deg, #4F3C7D 0%, #684FA3 100%)',
+  IA: 'linear-gradient(135deg, #684FA3 0%, #B85C9E 100%)',
+  Agentes: 'linear-gradient(135deg, #5A4A9E 0%, #4E7FC4 100%)',
+};
+const coverFor = (cat) => covers[cat] || covers.Arquitectura;
+---
+
+<Base>
+  <!-- HERO PERSONAL -->
+  <section class="author-hero">
+    <div class="hero-inner">
+    <div class="avatar"><img src="/avatar.svg" alt="Carina Correjidor" /></div>
+    <div class="author-info">
+      <h1>Carina Correjidor</h1>
+      <p class="role">Arquitecta de Software · Ing. en Sistemas · Maestría en IA (en curso)</p>
+      <p class="bio">
+        Escribo sobre <strong>arquitectura de software e IA aplicada</strong> — Clean &
+        Hexagonal, agentes y lo que voy investigando, siempre con criterio de
+        producción y sin hype. 20 años construyendo software crítico.
+      </p>
+      <div class="socials">
+        <!-- TODO: pegar tu URL real de LinkedIn en href (la pido por chat) -->
+        <a href="#linkedin-pendiente" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 9.5H5.67V18h2.67V9.5zM7 6a1.55 1.55 0 1 0 0 3.1A1.55 1.55 0 0 0 7 6zm11 6.28c0-2.3-1.46-3.1-2.92-3.1-1.1 0-1.86.6-2.18 1.18h-.04V9.5h-2.56V18h2.67v-4.2c0-1.1.21-2.17 1.58-2.17 1.35 0 1.36 1.26 1.36 2.24V18H18v-5.72z"/></svg>
+        </a>
+        <a href="https://github.com/caricorrejidor" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.84 21.5c.5.08.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .26.16.57.67.48A10 10 0 0 0 12 2z"/></svg>
+        </a>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ENCABEZADO DE LA LISTA -->
+  <section class="list-head">
+    <h2>Últimas notas</h2>
+    <div class="cats">
+      <span>Arquitectura</span>
+      <span>IA</span>
+      <span>Agentes</span>
+    </div>
+  </section>
+
+  <!-- GRILLA DE TARJETAS -->
+  <ul class="post-grid">
+    {
+      posts.map((post, i) => (
+        <li style={`--i: ${i}`}>
+          <a href={`/notas/${post.id}/`} class="card">
+            <div class="cover" style={`background: ${coverFor(post.data.category)}`}>
+              <span class="cover-cat">{post.data.category}</span>
+            </div>
+            <div class="card-body">
+              <div class="meta">
+                <time>{fmt(post.data.date)}</time>
+                <span class="dot-sep">·</span>
+                <span>{readingTime(post)} min de lectura</span>
+              </div>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <!-- LLAMADO A SEGUIR (sin números inventados) -->
+  <section class="follow">
+    <h2>¿Te sirvió lo que leíste?</h2>
+    <p>Seguime para más sobre arquitectura, IA aplicada y agentes — con ojo de producción.</p>
+    <div class="socials">
+      <a href="#linkedin-pendiente" class="follow-link">LinkedIn</a>
+      <a href="https://github.com/caricorrejidor" target="_blank" rel="noopener" class="follow-link">GitHub</a>
+    </div>
+  </section>
+</Base>

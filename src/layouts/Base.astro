@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+
+const {
+  title = 'Carina Correjidor — Notas',
+  description = 'Ideas de IA aplicada, contadas con criterio de ingeniería.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-head">
+      <div class="head-inner">
+        <a href="/" class="logo"><span class="di">~/</span>carina</a>
+        <nav class="head-nav">
+          <a href="/">Inicio</a>
+          <a href="/notas">Notas</a>
+          <a href="/cv.html">CV</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <slot />
+    </main>
+
+    <footer class="site-foot">
+      <div class="wrap">Carina Correjidor · IA aplicada con criterio de ingeniería</div>
+    </footer>
+  </body>
+</html>
