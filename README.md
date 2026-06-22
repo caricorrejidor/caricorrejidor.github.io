@@ -1,6 +1,13 @@
-# CV · Carina Correjidor
+<p align="center">
+  <img src="sitio/public/favicon.svg" width="110" alt="Mascota de Carina Correjidor — robot violeta">
+</p>
 
-Sitio personal, blog y CV de [Carina Correjidor](https://linkedin.com/in/carinacorrejidor) — Arquitecta de Software con foco en Fintech & Banca e IA aplicada. Buenos Aires.
+<h1 align="center">CV · Carina Correjidor</h1>
+
+<p align="center">
+  Sitio personal, blog y CV de <a href="https://linkedin.com/in/carinacorrejidor">Carina Correjidor</a><br>
+  Arquitecta de Software con foco en Fintech &amp; Banca e IA aplicada · Buenos Aires
+</p>
 
 ## 🔗 Links
 
