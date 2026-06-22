@@ -4,9 +4,9 @@ Sitio personal, blog y CV de [Carina Correjidor](https://linkedin.com/in/carinac
 
 ## 🔗 Links
 
-- **Sitio:** [caricorrejidor.github.io/cv](https://caricorrejidor.github.io/cv)
-- **Notas (blog):** [caricorrejidor.github.io/cv/notas](https://caricorrejidor.github.io/cv/notas)
-- **CV:** [caricorrejidor.github.io/cv/cv.html](https://caricorrejidor.github.io/cv/cv.html)
+- **Sitio:** [caricorrejidor.github.io](https://caricorrejidor.github.io/)
+- **Notas (blog):** [caricorrejidor.github.io/notas](https://caricorrejidor.github.io/notas)
+- **CV:** [caricorrejidor.github.io/cv.html](https://caricorrejidor.github.io/cv.html)
 - **LinkedIn:** [linkedin.com/in/carinacorrejidor](https://linkedin.com/in/carinacorrejidor)
 - **Email:** carinacorrejidor@outlook.com
 
