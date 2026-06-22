@@ -15,15 +15,19 @@ const { Content } = await render(post);
 
 const fmt = (d) =>
   d.toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// Normalizo el base para que SIEMPRE termine en '/' ('/cv/' en prod).
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 ---
 
 <Base title={`${post.data.title} — Carina Correjidor`} description={post.data.description}>
   <article class="post">
-    <a href="/notas" class="back">← Notas</a>
+    <a href={`${base}notas`} class="back">← Notas</a>
     <h1>{post.data.title}</h1>
     <p class="lead">{post.data.description}</p>
     <div class="byline">
-      <div class="avatar avatar-sm"><img src="/avatar.svg" alt="Carina Correjidor" /></div>
+      <div class="avatar avatar-sm"><img src={`${base}avatar.svg`} alt="Carina Correjidor" /></div>
       <div>
         <span class="byline-name">Carina Correjidor</span>
         <time>{fmt(post.data.date)}</time>

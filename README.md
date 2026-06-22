@@ -1,31 +1,46 @@
 # CV · Carina Correjidor
 
-Sitio personal y CV de [Carina Correjidor](https://linkedin.com/in/carinacorrejidor) — Full Stack Developer con foco en Fintech & Banca, e IA aplicada. Buenos Aires.
+Sitio personal, blog y CV de [Carina Correjidor](https://linkedin.com/in/carinacorrejidor) — Arquitecta de Software con foco en Fintech & Banca e IA aplicada. Buenos Aires.
 
 ## 🔗 Links
 
 - **Sitio:** [caricorrejidor.github.io/cv](https://caricorrejidor.github.io/cv)
+- **Notas (blog):** [caricorrejidor.github.io/cv/notas](https://caricorrejidor.github.io/cv/notas)
 - **CV:** [caricorrejidor.github.io/cv/cv.html](https://caricorrejidor.github.io/cv/cv.html)
 - **LinkedIn:** [linkedin.com/in/carinacorrejidor](https://linkedin.com/in/carinacorrejidor)
 - **Email:** carinacorrejidor@outlook.com
 
-## 📁 Contenido
+## 📁 Estructura
 
-| Archivo | Descripción |
+| Ruta | Descripción |
 |---|---|
-| `index.html` | Landing freelance — "Soluciones informáticas a medida & IA": diseño web, software a medida, inteligencia artificial y asesoría tecnológica |
-| `cv.html` | CV completo en formato editorial, listo para imprimir en A4 |
+| `src/pages/notas/` | Blog ("Notas") — lista y posts, generados desde `src/content/blog/*.md` |
+| `src/layouts/Base.astro` | Layout común (header + footer compartidos) |
+| `src/content/blog/` | Posts en Markdown (hoy de ejemplo) |
+| `src/styles/global.css` | Sistema de diseño del sitio |
+| `public/index.html` | Landing — se sirve tal cual (migración a componentes pendiente) |
+| `public/cv.html` | CV completo en formato editorial, listo para imprimir en A4 |
 
-## 🛠️ Stack del sitio
+## 🛠️ Stack
 
-HTML + CSS puro, sin dependencias ni build step. Tipografías vía Google Fonts. Se sirve directo desde GitHub Pages.
+[Astro](https://astro.build) (sitio estático). Tipografías DM Sans + JetBrains Mono vía Google Fonts.
+
+```bash
+npm install      # instalar dependencias
+npm run dev      # desarrollo local (http://localhost:4321/cv)
+npm run build    # build de producción → dist/
+npm run preview  # previsualizar el build
+```
+
+> El sitio es un *project page* de GitHub Pages, por eso `astro.config.mjs` usa `base: '/cv'`.
+
+## 🚀 Despliegue
+
+Automático vía GitHub Actions (`.github/workflows/deploy.yml`): cada push a `main` buildea con Astro y publica en GitHub Pages. Requiere que en *Settings → Pages → Source* esté seleccionado **GitHub Actions**.
 
 ## 🎨 Diseño
 
-- **Landing** — paleta crema + coral/terracota (`#C2643B`) con acento malva (`#9A6A8E`); tipografías Poppins + Inter; estética cálida y cercana.
-- **CV** — paleta blanco/grafito + violeta Milka (`#684FA3`) con acentos mostaza; tipografías JetBrains Mono + DM Sans; estética editorial técnica, optimizado para impresión A4.
-
-> 📌 Pendiente: unificar paleta entre landing (coral) y CV (violeta) para coherencia de marca.
+Paleta unificada en **violeta Milka** (`#684FA3`) con acentos, sobre fondo claro; tipografías DM Sans (texto) + JetBrains Mono (código/labels). El CV mantiene además su estética editorial técnica optimizada para impresión A4.
 
 ## 📝 Licencia
 
