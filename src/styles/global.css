@@ -39,51 +39,12 @@ body {
 ::selection { background: var(--accent); color: #fff; }
 a { color: inherit; }
 
-.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+/* Padding lateral alineado con el nav (.nav-inner usa 44px / 22px en mobile) */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 44px; }
+@media (max-width: 900px) { .wrap { padding: 0 22px; } }
 
-/* ---------- Header ---------- */
-.site-head {
-  position: sticky; top: 0; z-index: 10;
-  background: rgba(250,248,253,0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line-soft);
-}
-.head-inner {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 14px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.logo {
-  font-family: var(--mono);
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--ink);
-  font-size: 1.05rem;
-}
-.logo .di { color: var(--accent); }
-.head-nav { display: flex; gap: 24px; }
-.head-nav a {
-  font-family: var(--mono);
-  font-size: 0.9rem;
-  text-decoration: none;
-  color: var(--body);
-  transition: color 0.2s;
-}
-.head-nav a:hover { color: var(--accent); }
-
-/* ---------- Footer ---------- */
-.site-foot {
-  margin-top: 80px;
-  padding: 32px 0;
-  border-top: 1px solid var(--line-soft);
-  font-family: var(--mono);
-  font-size: 0.85rem;
-  color: var(--body);
-  text-align: center;
-}
+/* Header y Footer son componentes compartidos:
+   src/components/Header.astro · src/components/Footer.astro */
 
 /* ---------- Hero de autor ---------- */
 .author-hero { padding: 64px 0 40px; }

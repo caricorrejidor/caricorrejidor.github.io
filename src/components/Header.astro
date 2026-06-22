@@ -1,0 +1,203 @@
+---
+// Header unificado y contextual, compartido entre la landing y el blog.
+// variant="home"  → nav completo: scroll-spy a secciones + CTA + overlay (sobre el hero).
+// variant="inner" → mismo look (glass) pero nav simple, sin scroll-spy (para el blog).
+const { variant = 'inner' } = Astro.props;
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
+const homeLinks = [
+  { href: '#servicios', label: 'Servicios', sec: 'servicios' },
+  { href: '#proceso', label: 'Cómo trabajo', sec: 'proceso' },
+  { href: '#sobre-mi', label: 'Sobre mí', sec: 'sobre-mi' },
+  { href: '#stack', label: 'Stack', sec: 'stack' },
+  { href: `${base}notas`, label: 'Notas' },
+  { href: `${base}cv.html`, label: 'CV' },
+];
+const innerLinks = [
+  { href: base, label: 'Inicio' },
+  { href: `${base}notas`, label: 'Notas' },
+  { href: `${base}cv.html`, label: 'CV' },
+];
+
+const isHome = variant === 'home';
+const links = isHome ? homeLinks : innerLinks;
+const ctaHref = isHome ? '#contacto' : `${base}#contacto`;
+const logoHref = isHome ? '#top' : base;
+---
+
+<nav class:list={['site-nav', { inner: !isHome }]} aria-label="Navegación principal">
+  <div class="nav-inner">
+    <a href={logoHref} class="nav-logo" aria-label="Inicio"><span class="di">~/</span>carina</a>
+    <div class="nav-links">
+      {links.map((l) => <a href={l.href} data-sec={l.sec}>{l.label}</a>)}
+      <a href={ctaHref} class="nav-cta">Contacto →</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MENÚ OVERLAY (mobile) -->
+<div class="menu-overlay" id="menu">
+  <nav class="menu-panel" aria-label="Menú principal">
+    {links.map((l) => <a href={l.href} class="menu-link">{l.label}</a>)}
+    <a href={ctaHref} class="menu-cta">Contacto →</a>
+  </nav>
+</div>
+
+<style is:global>
+  /* ── NAV ── */
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+    background: transparent; border-bottom: 1px solid transparent;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .site-nav.scrolled {
+    background: rgba(250,248,253,0.85); backdrop-filter: blur(14px);
+    border-bottom-color: var(--line-soft); box-shadow: 0 6px 24px rgba(30,23,51,0.05);
+  }
+  /* Variante interna (blog): glass siempre y en el flujo (sticky), sin hero debajo */
+  .site-nav.inner {
+    position: sticky; background: rgba(250,248,253,0.85); backdrop-filter: blur(14px);
+    border-bottom-color: var(--line-soft); box-shadow: 0 6px 24px rgba(30,23,51,0.05);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 15px 44px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--mono); font-weight: 700; font-size: 15px;
+    color: var(--ink); text-decoration: none; letter-spacing: -0.2px;
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .nav-logo .di { color: var(--accent); font-size: 19px; }
+  .nav-logo b { color: var(--accent); font-weight: 700; }
+
+  /* Links de desktop (persistente con indicador de sección activa) */
+  .nav-links { display: flex; gap: 26px; align-items: center; }
+  .nav-links a {
+    font-family: var(--mono); font-size: 13px; color: var(--body);
+    text-decoration: none; transition: color 0.18s; position: relative;
+  }
+  .nav-links a:not(.nav-cta)::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px;
+    background: var(--accent); border-radius: 2px;
+    transform: scaleX(0); transform-origin: left; transition: transform 0.22s ease;
+  }
+  .nav-links a:not(.nav-cta):hover { color: var(--accent); }
+  .nav-links a:not(.nav-cta):hover::after,
+  .nav-links a.active::after { transform: scaleX(1); }
+  .nav-links a.active { color: var(--accent); }
+  .nav-cta {
+    font-family: var(--sans); background: var(--accent); color: #fff !important; font-weight: 600;
+    padding: 9px 18px; border-radius: 100px; transition: background 0.2s, transform 0.18s;
+  }
+  .nav-cta::after { display: none; }
+  .nav-cta:hover { background: var(--accent-deep); transform: translateY(-1px); }
+
+  /* Hamburguesa (solo mobile) */
+  .nav-toggle {
+    position: relative; z-index: 2; display: none;
+    width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 12px;
+    background: var(--surface); cursor: pointer; place-items: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .nav-toggle:hover { border-color: var(--accent); }
+  .nav-toggle .bars { position: relative; width: 18px; height: 12px; }
+  .nav-toggle .bars i {
+    position: absolute; left: 0; right: 0; height: 2px; border-radius: 2px; background: var(--ink);
+    transition: transform 0.3s ease, opacity 0.2s ease;
+  }
+  .nav-toggle .bars i:nth-child(1) { top: 0; }
+  .nav-toggle .bars i:nth-child(2) { top: 5px; }
+  .nav-toggle .bars i:nth-child(3) { top: 10px; }
+  .nav-toggle[aria-expanded="true"] .bars i:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bars i:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] .bars i:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+  /* Overlay menú */
+  .menu-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(250,248,253,0.97); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .menu-overlay.open { opacity: 1; visibility: visible; }
+  .menu-panel { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+  .menu-link, .menu-cta { opacity: 0; transform: translateY(14px); }
+  .menu-overlay.open .menu-link, .menu-overlay.open .menu-cta {
+    opacity: 1; transform: none; transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .menu-overlay.open .menu-link:nth-child(1) { transition-delay: 0.08s; }
+  .menu-overlay.open .menu-link:nth-child(2) { transition-delay: 0.14s; }
+  .menu-overlay.open .menu-link:nth-child(3) { transition-delay: 0.20s; }
+  .menu-overlay.open .menu-link:nth-child(4) { transition-delay: 0.26s; }
+  .menu-overlay.open .menu-cta { transition-delay: 0.34s; }
+  .menu-link {
+    font-family: var(--sans); text-decoration: none;
+    font-size: clamp(30px, 6vw, 46px); font-weight: 700; letter-spacing: -1px; color: var(--ink);
+    padding: 8px 0; transition: color 0.2s;
+  }
+  .menu-link:hover { color: var(--accent); }
+  .menu-cta {
+    font-family: var(--sans); text-decoration: none; margin-top: 22px;
+    font-size: 16px; font-weight: 600; color: #fff !important; background: var(--accent);
+    padding: 15px 32px; border-radius: 100px; box-shadow: 0 12px 26px rgba(104,79,163,0.30);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .menu-cta:hover { background: var(--accent-deep); transform: translateY(-2px); }
+  body.menu-open { overflow: hidden; }
+
+  @media (max-width: 900px) {
+    .nav-inner { padding-left: 22px; padding-right: 22px; }
+    .nav-links { display: none; }
+    .nav-toggle { display: grid; }
+  }
+</style>
+
+<script is:inline>
+  // Menú hamburguesa
+  const navToggle = document.getElementById('navToggle');
+  const menu = document.getElementById('menu');
+  if (navToggle && menu) {
+    const setMenu = (open) => {
+      menu.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open);
+      navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      document.body.classList.toggle('menu-open', open);
+    };
+    navToggle.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+  }
+
+  // Fondo del nav al scrollear (solo afecta a la variante "home"; en "inner" ya es glass)
+  const navEl = document.querySelector('.site-nav');
+  if (navEl && !navEl.classList.contains('inner')) {
+    const onScroll = () => navEl.classList.toggle('scrolled', window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  // Indicador de sección activa (scroll spy) — defensivo: solo si hay links con data-sec
+  const spyLinks = document.querySelectorAll('.nav-links a[data-sec]');
+  if (spyLinks.length) {
+    const spyMap = {};
+    spyLinks.forEach((a) => { spyMap[a.dataset.sec] = a; });
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          spyLinks.forEach((a) => a.classList.remove('active'));
+          if (spyMap[e.target.id]) spyMap[e.target.id].classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    ['servicios', 'proceso', 'sobre-mi', 'stack', 'contacto'].forEach((id) => {
+      const s = document.getElementById(id);
+      if (s) spy.observe(s);
+    });
+  }
+</script>

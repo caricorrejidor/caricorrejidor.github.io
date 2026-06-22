@@ -1,0 +1,55 @@
+---
+// Footer unificado y contextual, compartido entre la landing y el blog.
+// variant="home"  → links a las secciones de la landing.
+// variant="inner" → links de navegación del sitio (para el blog).
+const { variant = 'inner' } = Astro.props;
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
+const homeNav = [
+  { href: '#servicios', label: 'servicios' },
+  { href: '#proceso', label: 'proceso' },
+  { href: '#sobre-mi', label: 'sobre mí' },
+  { href: '#stack', label: 'stack' },
+  { href: '#contacto', label: 'contacto' },
+];
+const innerNav = [
+  { href: base, label: 'inicio' },
+  { href: `${base}notas`, label: 'notas' },
+  { href: `${base}cv.html`, label: 'cv' },
+];
+
+const isHome = variant === 'home';
+const nav = isHome ? homeNav : innerNav;
+const logoHref = isHome ? '#top' : base;
+---
+
+<footer>
+  <div class="footer-inner">
+    <a href={logoHref} class="nav-logo"><span class="di">~/</span>carina</a>
+    <nav class="foot-nav" aria-label="Navegación del pie">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+    </nav>
+    <p class="foot-copy">© 2026 Carina Correjidor · Buenos Aires, Argentina</p>
+  </div>
+</footer>
+
+<style is:global>
+  /* ── FOOTER ── */
+  footer { border-top: 1px solid var(--line); padding: 40px 0 36px; }
+  .footer-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 0 44px;
+    display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center;
+  }
+  .footer-inner .nav-logo { font-size: 15px; }
+  .foot-nav { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; }
+  .foot-nav a { font-family: var(--mono); font-size: 12px; color: var(--body); text-decoration: none; transition: color 0.18s; }
+  .foot-nav a:not(:last-child)::after { content: '·'; margin-left: 6px; color: rgba(94,86,112,0.45); }
+  .foot-nav a:hover { color: var(--accent); }
+  .foot-copy { font-family: var(--mono); font-size: 11.5px; color: var(--body); }
+
+  @media (max-width: 900px) {
+    .footer-inner { padding-left: 22px; padding-right: 22px; }
+  }
+</style>
