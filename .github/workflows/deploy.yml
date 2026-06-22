@@ -26,7 +26,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Build con Astro
         # Instala dependencias, corre `astro build` y sube dist/ como artifact
+        # El proyecto Astro vive en la subcarpeta sitio/
         uses: withastro/action@v3
+        with:
+          path: ./sitio
 
   deploy:
     needs: build
