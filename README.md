@@ -1,70 +1,74 @@
 <p align="center">
-  <img src="sitio/public/favicon.svg" width="110" alt="Mascota de Carina Correjidor — robot violeta">
+  <img src="sitio/public/favicon.svg" width="100" alt="Mascota — robot violeta">
 </p>
 
-<h1 align="center">CV · Carina Correjidor</h1>
+<h1 align="center">Sitio de Carina Correjidor</h1>
 
 <p align="center">
-  Sitio personal, blog y CV de <a href="https://linkedin.com/in/carinacorrejidor">Carina Correjidor</a><br>
-  Arquitecta de Software con foco en Fintech &amp; Banca e IA aplicada · Buenos Aires
+  Sitio personal + blog + CV, hecho en <a href="https://astro.build">Astro</a>.<br>
+  🔗 En vivo: <a href="https://caricorrejidor.github.io/">caricorrejidor.github.io</a>
 </p>
 
-## 🔗 Links
-
-- **Sitio:** [caricorrejidor.github.io](https://caricorrejidor.github.io/)
-- **Notas (blog):** [caricorrejidor.github.io/notas](https://caricorrejidor.github.io/notas)
-- **CV:** [caricorrejidor.github.io/cv.html](https://caricorrejidor.github.io/cv.html)
-- **LinkedIn:** [linkedin.com/in/carinacorrejidor](https://linkedin.com/in/carinacorrejidor)
-- **Email:** carinacorrejidor@outlook.com
-
-## 📁 Estructura
-
-El código del sitio vive en `sitio/`; este README queda en la raíz.
-
-```
-cv/
-├── README.md            (este archivo)
-└── sitio/               proyecto Astro
-    ├── astro.config.mjs
-    ├── package.json
-    ├── src/
-    │   ├── pages/        → /  (landing)  y  /notas  (blog)
-    │   ├── layouts/      Base.astro (layout del blog)
-    │   ├── components/   Header.astro · Footer.astro (compartidos)
-    │   ├── content/blog/ posts en Markdown
-    │   └── styles/       global.css
-    └── public/           cv.html, favicon.svg, avatar.svg
-```
-
-> El CV (`sitio/public/cv.html`) se sirve tal cual en `/cv/cv.html`. Tiene que vivir
-> dentro de `public/` para que GitHub Pages lo publique.
-
-## 🛠️ Stack y desarrollo
-
-[Astro](https://astro.build) (sitio estático). Tipografías DM Sans + JetBrains Mono.
-
-```bash
-cd sitio
-npm install      # instalar dependencias
-npm run dev      # desarrollo local (http://localhost:4321/cv)
-npm run build    # build de producción → sitio/dist/
-npm run preview  # previsualizar el build
-```
-
-> El sitio es un *project page* de GitHub Pages, por eso `astro.config.mjs` usa `base: '/cv'`.
-
-## 🚀 Despliegue
-
-Automático vía GitHub Actions (`.github/workflows/deploy.yml`): cada push a `main` buildea con Astro (desde `sitio/`) y publica en GitHub Pages. Requiere que en *Settings → Pages → Source* esté seleccionado **GitHub Actions**.
-
-## 🎨 Diseño
-
-Paleta unificada en **violeta Milka** (`#684FA3`) sobre fondo claro; tipografías DM Sans (texto) + JetBrains Mono (código/labels). La landing y el blog comparten header y footer. El CV mantiene su estética editorial técnica optimizada para impresión A4.
-
-## 📝 Licencia
-
-Contenido y diseño © 2026 Carina Correjidor. El código es libre de consultar; el contenido personal (experiencia, formación, marca) no es reutilizable sin permiso.
+> Manual del proyecto para mí. Cómo está armado, cómo correrlo y dónde tocar cada cosa.
 
 ---
 
-*Repo mantenido como parte del portfolio público. Cualquier feedback o typo reportado como issue es bienvenido.*
+## 🗂️ Estructura
+
+El proyecto Astro vive en `sitio/`. En la raíz quedan solo este README y la config de GitHub.
+
+```
+.
+├── README.md
+├── .github/workflows/deploy.yml   despliegue automático
+└── sitio/
+    ├── astro.config.mjs           site + base '/'
+    ├── src/
+    │   ├── pages/
+    │   │   ├── index.astro        la landing (ensambla los componentes)
+    │   │   └── notas/             el blog: lista + post individual
+    │   ├── layouts/Base.astro     layout del blog
+    │   ├── components/            Header, Footer + cada sección de la landing
+    │   ├── content/blog/          los posts en Markdown
+    │   └── styles/                global.css (blog) · landing.css (landing)
+    └── public/                    cv.html, favicon.svg (mascota), avatar.svg
+```
+
+## 🚀 Desarrollo
+
+```bash
+cd sitio
+npm install
+npm run dev      # http://localhost:4321/
+npm run build    # genera sitio/dist/
+npm run preview  # previsualiza el build
+```
+
+## 📦 Despliegue
+
+Automático: cada **push a `main`** dispara GitHub Actions (`.github/workflows/deploy.yml`), que buildea desde `sitio/` y publica en GitHub Pages.
+Requiere *Settings → Pages → Source = GitHub Actions*.
+
+> ⚠️ El sitio se publica gratis **porque el repo es público**. Si alguna vez lo paso a privado, Pages deja de andar en plan free (haría falta GitHub Pro o mover el deploy a Netlify/Vercel).
+
+## ✏️ Dónde tocar cada cosa
+
+| Quiero cambiar… | Archivo |
+|---|---|
+| Número de WhatsApp | `sitio/src/components/WhatsappFloat.astro` |
+| Testimonio (hoy oculto) | `sitio/src/components/Testimonio.astro` |
+| Respuestas del FAQ | `sitio/src/components/Faq.astro` |
+| Hero / servicios / textos | `Hero.astro` / `Servicios.astro` |
+| Sectores (prueba social) | `ProofBand.astro` |
+| Menú / pie de página | `Header.astro` / `Footer.astro` |
+| Posts del blog | `sitio/src/content/blog/*.md` |
+| Estilos landing / blog | `sitio/src/styles/landing.css` · `global.css` |
+| El CV | `sitio/public/cv.html` |
+
+## 📌 Pendientes
+
+- [ ] Pegar el número real de WhatsApp (hoy `NUMERO-A-DEFINIR`)
+- [ ] Testimonio real (la sección está oculta con `display:none`)
+- [ ] Confirmar respuestas del FAQ (trabajo remoto / costos)
+- [ ] Contenido real de los 3 posts (hoy son de ejemplo)
+- [ ] A futuro: ¿dominio propio? ¿repo privado? (ver nota de despliegue)
