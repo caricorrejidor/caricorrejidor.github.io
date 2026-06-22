@@ -1,6 +1,6 @@
 # CV · Carina Correjidor
 
-Sitio personal y CV de [Carina Correjidor](https://linkedin.com/in/carinacorrejidor) — Sr. .NET Developer con foco en sistemas bancarios y soluciones de IA aplicada.
+Sitio personal y CV de [Carina Correjidor](https://linkedin.com/in/carinacorrejidor) — Full Stack Developer con foco en Fintech & Banca, e IA aplicada. Buenos Aires.
 
 ## 🔗 Links
 
@@ -13,19 +13,19 @@ Sitio personal y CV de [Carina Correjidor](https://linkedin.com/in/carinacorreji
 
 | Archivo | Descripción |
 |---|---|
-| `index.html` | Landing con servicios freelance, stack técnico y formación |
+| `index.html` | Landing freelance — "Soluciones informáticas a medida & IA": diseño web, software a medida, inteligencia artificial y asesoría tecnológica |
 | `cv.html` | CV completo en formato editorial, listo para imprimir en A4 |
 
 ## 🛠️ Stack del sitio
 
-HTML + CSS puro, sin dependencias ni build step. Tipografías vía Google Fonts (DM Sans, JetBrains Mono, Syne). Se sirve directo desde GitHub Pages.
+HTML + CSS puro, sin dependencias ni build step. Tipografías vía Google Fonts. Se sirve directo desde GitHub Pages.
 
 ## 🎨 Diseño
 
-- **Landing** — paleta violeta + dorado, tipografía Syne, estética freelance moderna.
-- **CV** — paleta teal + mostaza, tipografía mono (JetBrains Mono), estética editorial técnica, optimizado para impresión A4.
+- **Landing** — paleta crema + coral/terracota (`#C2643B`) con acento malva (`#9A6A8E`); tipografías Poppins + Inter; estética cálida y cercana.
+- **CV** — paleta blanco/grafito + violeta Milka (`#684FA3`) con acentos mostaza; tipografías JetBrains Mono + DM Sans; estética editorial técnica, optimizado para impresión A4.
 
-> 📌 Pendiente: unificar paleta entre landing y CV para coherencia de marca.
+> 📌 Pendiente: unificar paleta entre landing (coral) y CV (violeta) para coherencia de marca.
 
 ## 📝 Licencia
 

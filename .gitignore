@@ -24,3 +24,5 @@ build/
 .env.local
 *.pem
 *.key
+# Tooling interno de agentes (no versionar)
+.atl/

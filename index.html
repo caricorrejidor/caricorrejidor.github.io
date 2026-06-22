@@ -3,596 +3,697 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carina Correjidor — .NET Developer & AI Solutions</title>
+<title>Soluciones informáticas a medida & IA</title>
+
+<!-- SEO -->
+<meta name="description" content="Diseño web, software a medida, inteligencia artificial, automatización y asesoría tecnológica. Convierto tus ideas y procesos en sistemas que funcionan, con trato cercano y sin vueltas.">
+<meta name="keywords" content="desarrollo de software, soluciones informáticas, diseño web, inteligencia artificial, asesoría tecnológica, automatización, APIs, .NET, React, Buenos Aires">
+<link rel="canonical" href="https://caricorrejidor.github.io/cv/">
+
+<!-- Open Graph / redes sociales -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Soluciones informáticas a medida & IA">
+<meta property="og:description" content="Diseño web, software a medida, IA y asesoría tecnológica. Convierto tus ideas en sistemas que funcionan.">
+<meta property="og:url" content="https://caricorrejidor.github.io/cv/">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#684FA3">
+
+<!-- Favicon (SVG inline, sin request extra) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23684FA3'/%3E%3Ctext x='50' y='68' font-size='52' fill='white' text-anchor='middle'%3E%E2%97%86%3C/text%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
   :root {
-    --ink: #0F0B1A;
-    --ink2: #2A2440;
-    --muted: #6B6480;
-    --bg: #FAF8FF;
-    --bg2: #F0ECF9;
-    --accent: #5C2D9E;
-    --accent2: #8B4FD8;
-    --gold: #C9920A;
-    --gold2: #F2C94C;
-    --surface: #FFFFFF;
-    --border: rgba(92,45,158,0.12);
+    /* Paleta unificada con el CV — violeta Milka #684FA3 */
+    --bg:        #FAF8FD;
+    --bg2:       #EFE8F8;
+    --ink:       #1E1733;
+    --ink-soft:  #2E2547;
+    --body:      #5E5670;
+    --accent:    #684FA3;
+    --accent-deep:#4F3C7D;
+    --accent-bright:#8A6FC0;
+    --accent-wash: rgba(104,79,163,0.10);
+    --surface:   #FFFFFF;
+    --line:      rgba(104,79,163,0.16);
+    --line-soft: rgba(104,79,163,0.08);
+    --code-bg:   #1E1733;
+    --ok:        #5FB59A;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --maxw: 1180px;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+  ::selection { background: var(--accent); color: #fff; }
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    overflow-x: hidden;
+    font-family: var(--sans);
+    background: var(--bg); color: var(--ink);
+    -webkit-font-smoothing: antialiased; line-height: 1.5; overflow-x: hidden;
   }
-
-  /* ── NOISE TEXTURE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0;
-    opacity: 0.4;
-  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 44px; }
 
   /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  .site-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+    background: transparent; border-bottom: 1px solid transparent;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .site-nav.scrolled {
+    background: rgba(250,248,253,0.85); backdrop-filter: blur(14px);
+    border-bottom-color: var(--line-soft); box-shadow: 0 6px 24px rgba(30,23,51,0.05);
+  }
+  .nav-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 15px 44px;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 60px;
-    background: rgba(250,248,255,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
   }
   .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 17px;
-    color: var(--accent); letter-spacing: -0.5px;
+    font-family: var(--mono); font-weight: 700; font-size: 15px;
+    color: var(--ink); text-decoration: none; letter-spacing: -0.2px;
+    display: inline-flex; align-items: center; gap: 9px;
   }
-  .nav-links { display: flex; gap: 32px; }
+  .nav-logo .di { color: var(--accent); font-size: 19px; }
+  .nav-logo b { color: var(--accent); font-weight: 700; }
+
+  /* Links de desktop (persistente con indicador de sección activa) */
+  .nav-links { display: flex; gap: 26px; align-items: center; }
   .nav-links a {
-    font-size: 13px; font-weight: 400; color: var(--muted);
-    text-decoration: none; letter-spacing: 0.3px;
-    transition: color 0.2s;
+    font-family: var(--mono); font-size: 13px; color: var(--body);
+    text-decoration: none; transition: color 0.18s; position: relative;
   }
-  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:not(.nav-cta)::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px;
+    background: var(--accent); border-radius: 2px;
+    transform: scaleX(0); transform-origin: left; transition: transform 0.22s ease;
+  }
+  .nav-links a:not(.nav-cta):hover { color: var(--accent); }
+  .nav-links a:not(.nav-cta):hover::after,
+  .nav-links a.active::after { transform: scaleX(1); }
+  .nav-links a.active { color: var(--accent); }
   .nav-cta {
-    font-size: 13px; font-weight: 500;
-    color: var(--surface);
-    background: var(--accent);
-    padding: 9px 20px; border-radius: 100px;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
+    font-family: var(--sans); background: var(--accent); color: #fff !important; font-weight: 600;
+    padding: 9px 18px; border-radius: 100px; transition: background 0.2s, transform 0.18s;
   }
-  .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+  .nav-cta::after { display: none; }
+  .nav-cta:hover { background: var(--accent-deep); transform: translateY(-1px); }
+
+  /* Hamburguesa (solo mobile) */
+  .nav-toggle {
+    position: relative; z-index: 2; display: none;
+    width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 12px;
+    background: var(--surface); cursor: pointer; place-items: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .nav-toggle:hover { border-color: var(--accent); }
+  .nav-toggle .bars { position: relative; width: 18px; height: 12px; }
+  .nav-toggle .bars i {
+    position: absolute; left: 0; right: 0; height: 2px; border-radius: 2px; background: var(--ink);
+    transition: transform 0.3s ease, opacity 0.2s ease;
+  }
+  .nav-toggle .bars i:nth-child(1) { top: 0; }
+  .nav-toggle .bars i:nth-child(2) { top: 5px; }
+  .nav-toggle .bars i:nth-child(3) { top: 10px; }
+  .nav-toggle[aria-expanded="true"] .bars i:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bars i:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] .bars i:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+  /* Overlay menú */
+  .menu-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(250,248,253,0.97); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .menu-overlay.open { opacity: 1; visibility: visible; }
+  .menu-panel { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+  .menu-link, .menu-cta { opacity: 0; transform: translateY(14px); }
+  .menu-overlay.open .menu-link, .menu-overlay.open .menu-cta {
+    opacity: 1; transform: none; transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .menu-overlay.open .menu-link:nth-child(1) { transition-delay: 0.08s; }
+  .menu-overlay.open .menu-link:nth-child(2) { transition-delay: 0.14s; }
+  .menu-overlay.open .menu-link:nth-child(3) { transition-delay: 0.20s; }
+  .menu-overlay.open .menu-link:nth-child(4) { transition-delay: 0.26s; }
+  .menu-overlay.open .menu-cta { transition-delay: 0.34s; }
+  .menu-link {
+    font-family: var(--sans); text-decoration: none;
+    font-size: clamp(30px, 6vw, 46px); font-weight: 700; letter-spacing: -1px; color: var(--ink);
+    padding: 8px 0; transition: color 0.2s;
+  }
+  .menu-link:hover { color: var(--accent); }
+  .menu-cta {
+    font-family: var(--sans); text-decoration: none; margin-top: 22px;
+    font-size: 16px; font-weight: 600; color: #fff !important; background: var(--accent);
+    padding: 15px 32px; border-radius: 100px; box-shadow: 0 12px 26px rgba(104,79,163,0.30);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .menu-cta:hover { background: var(--accent-deep); transform: translateY(-2px); }
+  body.menu-open { overflow: hidden; }
 
   /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: grid; grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 120px 60px 80px;
-    position: relative; overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0; pointer-events: none;
+  .hero { padding: 138px 0 70px; position: relative; overflow: hidden; }
+  .hero-glow {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
     background:
-      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(139,79,216,0.12) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,146,10,0.07) 0%, transparent 60%);
+      radial-gradient(ellipse 48% 46% at 85% 18%, rgba(104,79,163,0.16) 0%, transparent 70%),
+      radial-gradient(ellipse 42% 42% at 8% 92%, rgba(138,111,192,0.12) 0%, transparent 66%);
   }
-  .hero-grid-lines {
-    position: absolute; inset: 0; pointer-events: none;
-    background-image:
-      linear-gradient(rgba(92,45,158,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(92,45,158,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
+  .hero-inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center;
   }
-  .hero-left { position: relative; z-index: 1; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 7px;
-    background: rgba(92,45,158,0.08);
-    border: 1px solid rgba(92,45,158,0.2);
-    color: var(--accent); font-size: 11.5px; font-weight: 500;
-    padding: 5px 13px; border-radius: 100px;
-    margin-bottom: 28px; letter-spacing: 0.5px;
-    animation: fadeUp 0.6s ease both;
+  .badge {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--bg2); color: var(--accent-deep);
+    font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+    padding: 7px 15px; border-radius: 100px; border: 1px solid var(--line);
+    margin-bottom: 26px; animation: rise 0.6s ease both;
   }
-  .hero-tag::before {
-    content: '';
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
-
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.35)} }
   h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(38px, 5vw, 62px);
-    font-weight: 800; line-height: 1.05;
-    letter-spacing: -2px; color: var(--ink);
-    animation: fadeUp 0.6s 0.1s ease both;
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(36px, 5vw, 58px); line-height: 1.08; letter-spacing: -1.7px;
+    color: var(--ink); max-width: 15ch;
+    animation: rise 0.7s 0.05s ease both;
   }
   h1 em {
-    font-style: normal;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--gold) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-style: normal; color: var(--accent); white-space: nowrap;
   }
-  .hero-sub {
-    margin-top: 22px; font-size: 16px; line-height: 1.7;
-    color: var(--muted); max-width: 480px; font-weight: 300;
-    animation: fadeUp 0.6s 0.2s ease both;
+  .hero-lead {
+    margin-top: 22px; max-width: 470px;
+    font-size: 17.5px; line-height: 1.62; color: var(--body);
+    animation: rise 0.7s 0.15s ease both;
   }
-  .hero-actions {
-    margin-top: 36px; display: flex; gap: 14px; align-items: center;
-    animation: fadeUp 0.6s 0.3s ease both;
+  .hero-cta { margin-top: 30px; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; animation: rise 0.7s 0.25s ease both; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 15px; font-weight: 600; color: #fff; background: var(--accent);
+    padding: 15px 28px; border-radius: 100px; text-decoration: none;
+    box-shadow: 0 12px 26px rgba(104,79,163,0.30);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   }
-  .btn-primary {
-    display: inline-block; padding: 14px 28px;
-    background: var(--accent); color: #fff;
-    font-size: 14px; font-weight: 500; border-radius: 100px;
-    text-decoration: none; letter-spacing: 0.2px;
-    transition: all 0.2s;
-    box-shadow: 0 8px 24px rgba(92,45,158,0.3);
+  .btn:hover { transform: translateY(-2px); background: var(--accent-deep); box-shadow: 0 16px 34px rgba(104,79,163,0.40); }
+  .btn svg { transition: transform 0.2s; }
+  .btn:hover svg { transform: translateX(4px); }
+  .btn-ghost {
+    font-family: var(--mono); font-size: 14px; color: var(--ink); text-decoration: none; font-weight: 500;
+    border-bottom: 1.5px solid var(--accent); padding-bottom: 3px;
+    transition: color 0.18s;
   }
-  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(92,45,158,0.4); }
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-size: 14px; font-weight: 400; color: var(--muted);
-    text-decoration: none; transition: color 0.2s;
-  }
-  .btn-secondary:hover { color: var(--accent); }
-  .btn-secondary svg { transition: transform 0.2s; }
-  .btn-secondary:hover svg { transform: translateX(3px); }
+  .btn-ghost:hover { color: var(--accent); }
 
-  .hero-right {
-    position: relative; z-index: 1;
-    display: flex; justify-content: center; align-items: center;
-    animation: fadeUp 0.6s 0.2s ease both;
+  /* ── HERO · TERMINAL CARD (guiño al CV) ── */
+  .term {
+    background: var(--code-bg); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 30px 70px rgba(30,23,51,0.30), 0 0 0 1px rgba(255,255,255,0.04);
+    font-family: var(--mono); position: relative;
+    animation: rise 0.8s 0.2s ease both;
   }
-  .hero-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 32px;
-    width: 100%; max-width: 380px;
-    box-shadow: 0 20px 60px rgba(92,45,158,0.1);
-    position: relative;
+  .term::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 70% 50% at 80% 0%, rgba(138,111,192,0.18) 0%, transparent 60%);
   }
-  .hero-card::before {
-    content: '';
-    position: absolute; inset: -1px; border-radius: 24px;
-    background: linear-gradient(135deg, rgba(92,45,158,0.2), transparent 50%, rgba(201,146,10,0.1));
-    z-index: -1;
+  .term-bar {
+    display: flex; align-items: center; gap: 7px; padding: 13px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
   }
-  .card-avatar {
-    width: 64px; height: 64px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: #fff;
-    margin-bottom: 18px;
-  }
-  .card-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; }
-  .card-role { font-size: 12px; color: var(--muted); margin-top: 3px; }
-  .card-stats {
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px; margin-top: 24px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-  }
-  .stat-num { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--accent); }
-  .stat-lbl { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
-  .card-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
-  .cbadge {
-    font-size: 10px; padding: 4px 10px; border-radius: 100px;
-    border: 1px solid var(--border); color: var(--muted);
-    background: var(--bg2);
-  }
-  .cbadge.accent { border-color: rgba(92,45,158,0.3); color: var(--accent); background: rgba(92,45,158,0.06); }
+  .term-bar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .term-bar i:nth-child(1){ background:#E5687A; } .term-bar i:nth-child(2){ background:#E0B450; } .term-bar i:nth-child(3){ background:#5FB59A; }
+  .term-bar .ttl { margin-left: 8px; font-size: 11.5px; color: rgba(255,255,255,0.42); letter-spacing: 0.04em; }
+  .term-body { padding: 22px 24px 26px; font-size: 13px; line-height: 1.95; position: relative; z-index: 1; }
+  .term-body .ln { white-space: nowrap; opacity: 0; animation: lineIn 0.4s ease both; animation-delay: calc(var(--i, 0) * 0.11s + 0.45s); }
+  @keyframes lineIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .t-c { color: rgba(255,255,255,0.42); }              /* comentario */
+  .t-p { color: var(--accent-bright); }                /* prompt $ */
+  .t-k { color: rgba(255,255,255,0.92); }              /* texto */
+  .t-v { color: #D2C2F3; }                             /* valores violeta claro */
+  .t-ok{ color: var(--ok); }
+  .t-hi{ color: #fff; font-weight: 500; }
+  .term-body .blink { display:inline-block; width:8px; height:15px; background:var(--accent-bright); margin-left:3px; vertical-align:-2px; animation: blink 1.1s steps(1) infinite; animation-delay: 1.8s; }
+  @keyframes blink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
 
-  /* ── TICKER ── */
-  .ticker {
-    background: var(--accent); padding: 14px 0; overflow: hidden;
-    position: relative;
+  /* ── PROOF BAND ── */
+  .proof { padding: 38px 0 46px; border-bottom: 1px solid var(--line-soft); }
+  .proof-label {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--body);
+    text-align: center; margin-bottom: 18px;
   }
-  .ticker-inner {
-    display: flex; gap: 60px; width: max-content;
-    animation: ticker 22s linear infinite;
+  .proof-label b { color: var(--accent); font-weight: 700; }
+  .proof-logos {
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px 12px;
+    margin-bottom: 26px;
   }
-  .ticker-item {
-    font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600;
-    color: rgba(255,255,255,0.7); white-space: nowrap; letter-spacing: 0.5px;
-    display: flex; align-items: center; gap: 12px;
+  .plogo {
+    font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--ink-soft);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 100px;
+    padding: 8px 16px; transition: transform 0.18s, border-color 0.18s, color 0.18s;
   }
-  .ticker-item::after { content: '◆'; color: rgba(255,255,255,0.3); font-size: 8px; }
-  @keyframes ticker { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+  .plogo:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+  .proof-stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 46px; }
+  .pstat { text-align: center; }
+  .pstat .n { font-family: var(--sans); font-weight: 700; font-size: 32px; color: var(--accent); letter-spacing: -1px; line-height: 1; }
+  .pstat .l { font-family: var(--mono); font-size: 11.5px; color: var(--body); margin-top: 6px; letter-spacing: 0.02em; }
 
-  /* ── SECTIONS ── */
-  section { padding: 100px 60px; position: relative; }
-  .section-tag {
-    font-size: 11px; font-weight: 500; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 16px;
+  /* ── SECTION SCAFFOLD ── */
+  section { padding: 92px 0; }
+  .sec-alt { background: var(--bg2); }
+  .sec-head { margin-bottom: 54px; max-width: 720px; }
+  .sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .kicker { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 14px; display: inline-block; }
+  .kicker::before { content: '// '; color: var(--accent-bright); }
+  .sec-title {
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(28px, 4vw, 44px); line-height: 1.08; letter-spacing: -1.4px; color: var(--ink);
   }
-  .section-title {
-    font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700; letter-spacing: -1.5px; line-height: 1.1;
-    color: var(--ink);
-  }
-  .section-sub { font-size: 15px; color: var(--muted); margin-top: 12px; max-width: 520px; line-height: 1.7; font-weight: 300; }
+  .sec-sub { margin-top: 16px; font-size: 17px; line-height: 1.6; color: var(--body); }
 
   /* ── SERVICES ── */
-  #servicios { background: var(--bg); }
-  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
-  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .service-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px; padding: 32px;
-    position: relative; overflow: hidden;
-    transition: transform 0.25s, box-shadow 0.25s;
-    cursor: default;
+  .srv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .srv-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 30px;
+    display: flex; flex-direction: column; position: relative;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
   }
-  .service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(92,45,158,0.12); }
-  .service-card::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(92,45,158,0.04) 0%, transparent 60%);
-    pointer-events: none;
+  .srv-card:hover { transform: translateY(-7px); box-shadow: 0 26px 50px rgba(104,79,163,0.16); border-color: transparent; }
+  .srv-card.feat { background: linear-gradient(150deg, var(--accent) 0%, var(--accent-deep) 100%); border-color: transparent; }
+  .srv-card.feat .srv-name, .srv-card.feat .srv-text { color: #fff; }
+  .srv-card.feat .srv-text { color: rgba(255,255,255,0.88); }
+  .srv-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .srv-num { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--accent); }
+  .srv-card.feat .srv-num { color: rgba(255,255,255,0.75); }
+  .srv-ico { width: 52px; height: 52px; border-radius: 15px; background: var(--bg2); display: grid; place-items: center; color: var(--accent); }
+  .srv-ico svg { width: 26px; height: 26px; }
+  .srv-card.feat .srv-ico { background: rgba(255,255,255,0.18); color: #fff; }
+  .srv-name { font-family: var(--sans); font-size: 20px; font-weight: 600; letter-spacing: -0.4px; line-height: 1.25; margin-bottom: 10px; }
+  .srv-text { font-size: 14.5px; line-height: 1.65; color: var(--body); flex-grow: 1; }
+  .srv-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+  .tag { font-family: var(--mono); font-size: 11px; padding: 4px 11px; border-radius: 100px; background: var(--bg2); color: var(--body); }
+  .srv-card.feat .tag { background: rgba(255,255,255,0.16); color: #fff; }
+
+  /* ── PROCESS ── */
+  .proc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .proc-step { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px 24px; transition: transform 0.22s, box-shadow 0.22s; }
+  .proc-step:hover { transform: translateY(-5px); box-shadow: 0 18px 38px rgba(104,79,163,0.13); }
+  .proc-n { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; }
+  .proc-t { font-family: var(--sans); font-size: 17px; font-weight: 600; margin: 14px 0 8px; }
+  .proc-d { font-size: 13.5px; line-height: 1.55; color: var(--body); }
+
+  /* ── TESTIMONIO ── */
+  .quote-card {
+    max-width: 820px; margin: 0 auto; text-align: center; position: relative;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 50px 48px 44px;
+    box-shadow: 0 24px 60px rgba(104,79,163,0.08);
   }
-  .service-card.featured {
-    background: linear-gradient(135deg, var(--accent) 0%, #3D1A7A 100%);
-    border-color: transparent;
-  }
-  .service-card.featured * { color: rgba(255,255,255,0.85) !important; }
-  .service-card.featured .service-title { color: #fff !important; }
-  .service-num {
-    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
-    color: var(--accent); letter-spacing: 2px; margin-bottom: 20px;
-  }
-  .service-card.featured .service-num { color: rgba(255,255,255,0.4) !important; }
-  .service-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    background: rgba(92,45,158,0.1);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px; margin-bottom: 18px;
-  }
-  .service-card.featured .service-icon { background: rgba(255,255,255,0.15); }
-  .service-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; }
-  .service-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
-  .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
-  .stag {
-    font-size: 10px; padding: 3px 9px; border-radius: 100px;
-    background: var(--bg2); color: var(--muted); border: 1px solid var(--border);
-  }
-  .service-card.featured .stag { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+  .quote-mark { font-family: var(--sans); font-weight: 700; font-size: 90px; line-height: 0.4; color: var(--accent); opacity: 0.22; height: 40px; }
+  .quote-card blockquote { font-family: var(--sans); font-weight: 600; font-size: clamp(20px, 2.4vw, 27px); line-height: 1.4; letter-spacing: -0.5px; color: var(--ink); margin: 8px 0 26px; }
+  .quote-card figcaption { font-family: var(--mono); font-size: 13px; color: var(--body); }
+  .quote-card figcaption strong { color: var(--accent); display: block; font-weight: 700; margin-bottom: 2px; }
+  .q-todo { display: inline-block; margin-top: 16px; font-family: var(--mono); font-size: 11px; color: var(--accent-deep); background: rgba(104,79,163,0.08); border: 1px dashed var(--accent); border-radius: 8px; padding: 5px 11px; }
 
   /* ── ABOUT ── */
-  #sobre-mi { background: var(--bg2); }
-  .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
-  .about-left { position: relative; }
-  .about-visual {
-    background: linear-gradient(135deg, var(--accent) 0%, #7B3DC8 50%, var(--gold) 100%);
-    border-radius: 24px; height: 380px;
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
+  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: start; }
+  .about-quote {
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(23px, 3vw, 34px); line-height: 1.28; letter-spacing: -0.8px; color: var(--ink);
   }
-  .about-visual-inner {
-    font-family: 'Syne', sans-serif; font-size: 80px; font-weight: 800;
-    color: rgba(255,255,255,0.15); letter-spacing: -4px; line-height: 1;
-    text-align: center; user-select: none;
+  .about-quote span { color: var(--accent); position: relative; }
+  .about-quote span::after { content: ''; position: absolute; left: 0; right: 0; bottom: 3px; height: 11px; background: rgba(104,79,163,0.18); z-index: -1; }
+  .about-body { font-size: 16px; line-height: 1.78; color: var(--body); }
+  .about-body strong { color: var(--ink); font-weight: 600; }
+  .about-body + .about-body { margin-top: 16px; }
+  .about-sign { margin-top: 22px; font-family: var(--mono); font-size: 14px; color: var(--body); }
+  .about-sign strong { color: var(--accent); font-weight: 700; }
+  .creds { display: flex; flex-direction: column; gap: 11px; }
+  .cred {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 13px;
+    padding: 14px 18px; display: flex; align-items: baseline; gap: 14px;
+    transition: transform 0.18s, box-shadow 0.18s;
   }
-  .about-float {
-    position: absolute; bottom: -20px; right: -20px;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 16px; padding: 16px 20px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-  }
-  .about-float-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--accent); }
-  .about-float-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .about-right {}
-  .about-text { font-size: 15px; line-height: 1.8; color: var(--muted); font-weight: 300; }
-  .about-text strong { color: var(--ink); font-weight: 500; }
-  .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
-  .highlight-item {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 16px;
-  }
-  .highlight-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-bottom: 8px; }
-  .highlight-title { font-size: 12px; font-weight: 500; color: var(--ink); }
-  .highlight-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .cred:hover { transform: translateX(4px); box-shadow: 0 10px 24px rgba(104,79,163,0.10); }
+  .cred-y { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--accent); white-space: nowrap; }
+  .cred-t { font-size: 14px; color: var(--ink); }
+  .cred-i { font-family: var(--mono); font-size: 12px; color: var(--body); margin-left: auto; white-space: nowrap; }
 
   /* ── STACK ── */
-  #stack { background: var(--bg); }
-  .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
-  .stack-item {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 18px 16px;
-    display: flex; align-items: center; gap: 12px;
-    transition: border-color 0.2s, transform 0.2s;
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    font-family: var(--mono); font-size: 13.5px; background: var(--surface); border: 1px solid var(--line); color: var(--ink);
+    padding: 10px 17px; border-radius: 100px;
+    transition: transform 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s; cursor: default;
   }
-  .stack-item:hover { border-color: rgba(92,45,158,0.35); transform: translateY(-2px); }
-  .stack-dot {
-    width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-  .stack-name { font-size: 13px; font-weight: 500; }
-  .stack-type { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+  .chip:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); box-shadow: 0 8px 18px rgba(104,79,163,0.16); }
 
-  /* ── EDUCATION ── */
-  #formacion { background: var(--accent); }
-  #formacion .section-tag { color: rgba(255,255,255,0.5); }
-  #formacion .section-title { color: #fff; }
-  #formacion .section-sub { color: rgba(255,255,255,0.6); }
-  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-  .edu-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 18px; padding: 26px;
-    transition: background 0.2s;
+  /* ── FAQ ── */
+  .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+  .faq-item.open { border-color: var(--accent); box-shadow: 0 14px 34px rgba(104,79,163,0.10); }
+  .faq-q {
+    width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+    padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    font-family: var(--sans); font-size: 16.5px; font-weight: 600; color: var(--ink);
   }
-  .edu-card:hover { background: rgba(255,255,255,0.13); }
-  .edu-card.gold { border-color: rgba(242,201,76,0.4); background: rgba(242,201,76,0.08); }
-  .edu-year { font-size: 10.5px; color: rgba(255,255,255,0.4); letter-spacing: 1px; margin-bottom: 10px; }
-  .edu-card.gold .edu-year { color: rgba(242,201,76,0.7); }
-  .edu-card-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; line-height: 1.3; }
-  .edu-card-inst { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
-  .edu-card.gold .edu-card-inst { color: rgba(242,201,76,0.6); }
+  .faq-q .ic { flex-shrink: 0; width: 22px; height: 22px; position: relative; }
+  .faq-q .ic::before, .faq-q .ic::after { content: ''; position: absolute; background: var(--accent); border-radius: 2px; left: 50%; top: 50%; }
+  .faq-q .ic::before { width: 14px; height: 2px; transform: translate(-50%,-50%); }
+  .faq-q .ic::after { width: 2px; height: 14px; transform: translate(-50%,-50%); transition: transform 0.3s; }
+  .faq-item.open .faq-q .ic::after { transform: translate(-50%,-50%) scaleY(0); }
+  .faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.32s ease; }
+  .faq-item.open .faq-a { grid-template-rows: 1fr; }
+  .faq-a > div { overflow: hidden; }
+  .faq-a p { padding: 0 24px 22px; font-size: 15px; line-height: 1.65; color: var(--body); }
 
   /* ── CONTACT ── */
-  #contacto { background: var(--bg); }
-  .contact-wrapper {
-    max-width: 640px; margin: 0 auto; text-align: center;
+  .contact-box {
+    background: var(--ink); border-radius: 28px; padding: 68px 48px; text-align: center;
+    position: relative; overflow: hidden;
   }
-  .contact-wrapper .section-title { margin-bottom: 16px; }
-  .contact-wrapper .section-sub { margin: 0 auto 40px; }
-  .contact-methods { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
-  .contact-method {
-    display: flex; align-items: center; gap: 10px;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 100px; padding: 12px 22px;
-    font-size: 13px; color: var(--ink); text-decoration: none;
-    transition: border-color 0.2s, transform 0.2s;
+  .contact-box::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 50% 65% at 50% 0%, rgba(138,111,192,0.30) 0%, transparent 70%);
   }
-  .contact-method:hover { border-color: var(--accent); transform: translateY(-2px); color: var(--accent); }
-  .contact-method span { font-size: 16px; }
+  .contact-box > * { position: relative; z-index: 1; }
+  .contact-box .kicker { color: var(--accent-bright); }
+  .contact-box .kicker::before { color: rgba(255,255,255,0.4); }
+  .contact-box .sec-title { color: #fff; }
+  .contact-lead { font-size: 18px; color: rgba(255,255,255,0.72); max-width: 46ch; margin: 16px auto 38px; line-height: 1.6; }
+  .contact-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 14.5px; font-weight: 500; color: var(--ink); text-decoration: none;
+    background: #fff; padding: 14px 24px; border-radius: 100px;
+    transition: transform 0.18s, box-shadow 0.18s, color 0.18s;
+  }
+  .contact-link:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(104,79,163,0.40); color: var(--accent-deep); }
+  .contact-link span { font-size: 16px; }
+
+  /* ── FORMULARIO DE CONTACTO (Web3Forms) ── */
+  .contact-form { max-width: 520px; margin: 30px auto 0; text-align: left; display: flex; flex-direction: column; gap: 13px; }
+  .cf-row { display: flex; gap: 13px; }
+  .contact-form input, .contact-form textarea {
+    width: 100%; font-family: var(--sans); font-size: 15px; color: #fff;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px;
+    padding: 13px 16px; transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.42); }
+  .contact-form input:focus, .contact-form textarea:focus {
+    outline: none; border-color: var(--accent-bright); background: rgba(255,255,255,0.10);
+  }
+  .contact-form textarea { resize: vertical; min-height: 112px; }
+  .contact-form button {
+    margin-top: 3px; font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--ink);
+    background: #fff; border: none; border-radius: 100px; padding: 15px 28px; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, color 0.2s;
+  }
+  .contact-form button:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,0,0.28); color: var(--accent-deep); }
+  .contact-form button:disabled { opacity: 0.6; cursor: default; transform: none; box-shadow: none; }
+  .cf-status { font-family: var(--mono); font-size: 13px; min-height: 18px; margin-top: 2px; }
+  .cf-status.ok { color: var(--ok); }
+  .cf-status.err { color: #E5687A; }
+
+  /* ── WHATSAPP FLOTANTE ── */
+  .wa-float {
+    position: fixed; right: 22px; bottom: 22px; z-index: 250;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; color: #fff; display: grid; place-items: center;
+    box-shadow: 0 10px 28px rgba(37,211,102,0.42);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .wa-float svg { width: 30px; height: 30px; }
+  .wa-float:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 16px 36px rgba(37,211,102,0.50); }
 
   /* ── FOOTER ── */
-  footer {
-    padding: 28px 60px;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 12px; color: var(--muted);
+  footer { border-top: 1px solid var(--line); padding: 40px 0 36px; }
+  .footer-inner {
+    max-width: var(--maxw); margin: 0 auto; padding: 0 44px;
+    display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center;
   }
-  footer strong { color: var(--ink); font-weight: 500; }
+  .footer-inner .nav-logo { font-size: 15px; }
+  .foot-nav { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; }
+  .foot-nav a { font-family: var(--mono); font-size: 12px; color: var(--body); text-decoration: none; transition: color 0.18s; }
+  .foot-nav a:not(:last-child)::after { content: '·'; margin-left: 6px; color: rgba(94,86,112,0.45); }
+  .foot-nav a:hover { color: var(--accent); }
+  .foot-copy { font-family: var(--mono); font-size: 11.5px; color: var(--body); }
 
   /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    .term-body .ln { opacity: 1 !important; }
+    .term-body .blink { display: none; }
   }
 
   /* ── RESPONSIVE ── */
+  @media (max-width: 940px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 44px; }
+    .term { max-width: 460px; }
+  }
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
+    .wrap, .nav-inner, .footer-inner { padding-left: 22px; padding-right: 22px; }
     .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 40px; }
-    .hero-right { display: none; }
-    section { padding: 70px 24px; }
-    .services-grid { grid-template-columns: 1fr; }
+    .nav-toggle { display: grid; }
+    .hero { padding: 116px 0 56px; }
+    h1 { letter-spacing: -1.2px; max-width: 18ch; }
+    section { padding: 64px 0; }
+    .srv-grid { grid-template-columns: 1fr; }
+    .proc-grid { grid-template-columns: 1fr 1fr; }
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .about-visual { height: 200px; }
-    .stack-grid { grid-template-columns: 1fr 1fr; }
-    .edu-grid { grid-template-columns: 1fr; }
-    .services-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
+    .cred { flex-wrap: wrap; gap: 4px 12px; }
+    .cred-i { margin-left: 0; }
+    .contact-box { padding: 48px 24px; }
+    .cf-row { flex-direction: column; }
+    .wa-float { right: 16px; bottom: 16px; width: 52px; height: 52px; }
+    .wa-float svg { width: 28px; height: 28px; }
+    .quote-card { padding: 40px 26px 34px; }
+    .proof-stats { gap: 14px 32px; }
+  }
+  @media (max-width: 540px) {
+    .proc-grid { grid-template-columns: 1fr; }
+    .term-body { font-size: 11.5px; }
+    .pstat .n { font-size: 27px; }
   }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <div class="nav-logo">CC</div>
-  <div class="nav-links">
-    <a href="#servicios">Servicios</a>
-    <a href="#sobre-mi">Sobre mí</a>
-    <a href="#stack">Stack</a>
-    <a href="#formacion">Formación</a>
-    <a href="cv.html">CV</a>
+<nav class="site-nav" aria-label="Navegación principal">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo" aria-label="Inicio"><span class="di">◆</span> soluciones<b>.ia</b></a>
+    <div class="nav-links">
+      <a href="#servicios" data-sec="servicios">Servicios</a>
+      <a href="#proceso" data-sec="proceso">Cómo trabajo</a>
+      <a href="#sobre-mi" data-sec="sobre-mi">Sobre mí</a>
+      <a href="#stack" data-sec="stack">Stack</a>
+      <a href="#contacto" class="nav-cta">Contacto →</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
   </div>
-  <a href="mailto:carinacorrejidor@outlook.com" class="nav-cta">Contactar →</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid-lines"></div>
-  <div class="hero-left">
-    <div class="hero-tag">Disponible para proyectos freelance</div>
-    <h1>Desarrollo .NET<br>& <em>soluciones IA</em><br>para el sector<br>financiero.</h1>
-    <p class="hero-sub">Más de 17 años construyendo sistemas bancarios robustos. Ahora integrando inteligencia artificial donde más importa: en la lógica del negocio.</p>
-    <div class="hero-actions">
-      <a href="#servicios" class="btn-primary">Ver servicios</a>
-      <a href="#contacto" class="btn-secondary">
-        Trabajemos juntos
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-card">
-      <div class="card-avatar">CC</div>
-      <div class="card-name">Carina Correjidor</div>
-      <div class="card-role">Sr. .NET Developer · IA · Banca</div>
-      <div class="card-stats">
-        <div><div class="stat-num">17+</div><div class="stat-lbl">años de exp.</div></div>
-        <div><div class="stat-num">8+</div><div class="stat-lbl">empresas</div></div>
-        <div><div class="stat-num">∞</div><div class="stat-lbl">líneas de C#</div></div>
-      </div>
-      <div class="card-badges">
-        <span class="cbadge accent">.NET Core</span>
-        <span class="cbadge accent">React</span>
-        <span class="cbadge accent">Clean Arch.</span>
-        <span class="cbadge">SQL Server</span>
-        <span class="cbadge">Azure</span>
-        <span class="cbadge">Maestría IA ✦</span>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- MENÚ OVERLAY -->
+<div class="menu-overlay" id="menu">
+  <nav class="menu-panel" aria-label="Menú principal">
+    <a href="#servicios" class="menu-link">Servicios</a>
+    <a href="#proceso" class="menu-link">Cómo trabajo</a>
+    <a href="#sobre-mi" class="menu-link">Sobre mí</a>
+    <a href="#stack" class="menu-link">Stack</a>
+    <a href="#contacto" class="menu-cta">Contacto →</a>
+  </nav>
+</div>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-inner">
-    <span class="ticker-item">.NET Core</span>
-    <span class="ticker-item">Clean Architecture</span>
-    <span class="ticker-item">React + TypeScript</span>
-    <span class="ticker-item">Web API REST</span>
-    <span class="ticker-item">Entity Framework</span>
-    <span class="ticker-item">SQL Server</span>
-    <span class="ticker-item">Inteligencia Artificial</span>
-    <span class="ticker-item">Azure</span>
-    <span class="ticker-item">Ciberseguridad</span>
-    <span class="ticker-item">Sector Bancario</span>
-    <span class="ticker-item">.NET Core</span>
-    <span class="ticker-item">Clean Architecture</span>
-    <span class="ticker-item">React + TypeScript</span>
-    <span class="ticker-item">Web API REST</span>
-    <span class="ticker-item">Entity Framework</span>
-    <span class="ticker-item">SQL Server</span>
-    <span class="ticker-item">Inteligencia Artificial</span>
-    <span class="ticker-item">Azure</span>
-    <span class="ticker-item">Ciberseguridad</span>
-    <span class="ticker-item">Sector Bancario</span>
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="badge"><span class="dot" aria-hidden="true"></span> Disponible para nuevos proyectos</div>
+      <h1>Software a medida que <em>trabaja para vos.</em></h1>
+      <p class="hero-lead">Diseño web, software a medida, inteligencia artificial y asesoría tecnológica. Convierto tus ideas y procesos en sistemas que funcionan — con trato cercano y todo lo que tu proyecto necesite.</p>
+      <div class="hero-cta">
+        <a href="#contacto" class="btn">
+          Trabajemos juntos
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#servicios" class="btn-ghost">Ver servicios</a>
+      </div>
+    </div>
+
+    <!-- Terminal card · guiño al CV -->
+    <div class="term" role="img" aria-label="Resumen de perfil de Carina Correjidor: desarrolladora full-stack y referente técnica, más de 15 años de experiencia en banca y fintech, stack .NET, Clean Architecture, React e IA, disponible para proyectos.">
+      <div class="term-bar" aria-hidden="true">
+        <i></i><i></i><i></i>
+        <span class="ttl">perfil.sh</span>
+      </div>
+      <div class="term-body" aria-hidden="true">
+        <div class="ln" style="--i:0"><span class="t-p">$</span> <span class="t-k">whoami</span></div>
+        <div class="ln" style="--i:1"><span class="t-p">→</span> <span class="t-hi">Carina Correjidor</span></div>
+        <div class="ln" style="--i:2"><span class="t-c">dev full-stack · referente técnica</span></div>
+        <div class="ln" style="--i:3">&nbsp;</div>
+        <div class="ln" style="--i:4"><span class="t-p">$</span> <span class="t-k">experiencia</span></div>
+        <div class="ln" style="--i:5"><span class="t-v">+15 años · banca y fintech</span></div>
+        <div class="ln" style="--i:6"><span class="t-v">software crítico en producción</span></div>
+        <div class="ln" style="--i:7">&nbsp;</div>
+        <div class="ln" style="--i:8"><span class="t-p">$</span> <span class="t-k">stack</span> <span class="t-c">--core</span></div>
+        <div class="ln" style="--i:9"><span class="t-v">.NET · Clean Arch · React · IA</span></div>
+        <div class="ln" style="--i:10">&nbsp;</div>
+        <div class="ln" style="--i:11"><span class="t-p">$</span> <span class="t-k">estado</span></div>
+        <div class="ln" style="--i:12"><span class="t-ok">● disponible para proyectos</span><span class="blink"></span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROOF BAND -->
+<div class="proof">
+  <div class="wrap">
+    <p class="proof-label">Experiencia construyendo software crítico para <b>sectores exigentes</b></p>
+    <div class="proof-logos reveal">
+      <span class="plogo">Banca</span>
+      <span class="plogo">Fintech</span>
+      <span class="plogo">Mercado de capitales</span>
+      <span class="plogo">Energía</span>
+      <span class="plogo">Telecomunicaciones</span>
+      <span class="plogo">Retail</span>
+    </div>
+    <div class="proof-stats reveal">
+      <div class="pstat"><div class="n" data-count="15" data-prefix="+">+15</div><div class="l">años en software</div></div>
+      <div class="pstat"><div class="n" data-count="8" data-prefix="+">+8</div><div class="l">bancos y fintech</div></div>
+      <div class="pstat"><div class="n" data-count="5">5</div><div class="l">productos en producción</div></div>
+      <div class="pstat"><div class="n">IA</div><div class="l">Maestría en curso · UdeSA</div></div>
+    </div>
   </div>
 </div>
 
 <!-- SERVICIOS -->
 <section id="servicios">
-  <div class="services-header">
-    <div>
-      <div class="section-tag">Servicios</div>
-      <h2 class="section-title">¿En qué puedo<br>ayudarte?</h2>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Servicios</span>
+      <h2 class="sec-title">Lo que puedo resolverte</h2>
+      <p class="sec-sub">Soluciones para negocios que necesitan software confiable, hecho a medida y listo para crecer. Grandes o chicos.</p>
     </div>
-    <p class="section-sub" style="max-width:320px">Soluciones pensadas para empresas que necesitan confiabilidad y modernización tecnológica.</p>
-  </div>
-  <div class="services-grid">
-    <div class="service-card featured">
-      <div class="service-num">01</div>
-      <div class="service-icon">🤖</div>
-      <div class="service-title">Integración de IA en sistemas .NET</div>
-      <div class="service-desc">Incorporo capacidades de IA —agentes, RAG, scoring— en tus aplicaciones .NET existentes sin reescribir desde cero.</div>
-      <div class="service-tags">
-        <span class="stag">Semantic Kernel</span>
-        <span class="stag">Azure OpenAI</span>
-        <span class="stag">Agentes</span>
-        <span class="stag">RAG</span>
+    <div class="srv-grid">
+      <div class="srv-card feat reveal">
+        <div class="srv-top"><span class="srv-num">01</span><span class="srv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5 13.8 11.3 12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 14l.6 1.8 1.8.7-1.8.7L19 19l-.7-1.8-1.8-.7 1.8-.7z"/></svg></span></div>
+        <h3 class="srv-name">Inteligencia artificial</h3>
+        <p class="srv-text">Sumo IA donde mueve la aguja: chatbots, asistentes, automatización y análisis de datos que trabajan por vos.</p>
+        <div class="srv-tags"><span class="tag">Agentes</span><span class="tag">Chatbots</span><span class="tag">RAG</span><span class="tag">Azure OpenAI</span></div>
       </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">02</div>
-      <div class="service-icon">⚙️</div>
-      <div class="service-title">Desarrollo de APIs y backends .NET</div>
-      <div class="service-desc">Web APIs REST robustas con .NET Core, Clean Architecture, EF Core y SQL Server. Con tests, documentación Swagger y despliegue.</div>
-      <div class="service-tags">
-        <span class="stag">.NET 8</span>
-        <span class="stag">Web API</span>
-        <span class="stag">EF Core</span>
-        <span class="stag">Clean Arch.</span>
+      <div class="srv-card reveal">
+        <div class="srv-top"><span class="srv-num">02</span><span class="srv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><path d="M13 6l-2 12"/></svg></span></div>
+        <h3 class="srv-name">Software a medida</h3>
+        <p class="srv-text">El sistema que tu negocio necesita, desde cero o sobre lo que ya tenés. Pensado para tu forma de trabajar, no al revés.</p>
+        <div class="srv-tags"><span class="tag">APIs</span><span class="tag">.NET</span><span class="tag">Backends</span><span class="tag">SQL</span></div>
       </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">03</div>
-      <div class="service-icon">🎨</div>
-      <div class="service-title">Frontends React + TypeScript</div>
-      <div class="service-desc">Interfaces modernas, performantes y mantenibles. Integradas con tus APIs o con sistemas de diseño existentes.</div>
-      <div class="service-tags">
-        <span class="stag">React</span>
-        <span class="stag">TypeScript</span>
-        <span class="stag">Blazor</span>
-        <span class="stag">Angular</span>
+      <div class="srv-card reveal">
+        <div class="srv-top"><span class="srv-num">03</span><span class="srv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M6.5 6.5h.01M9.5 6.5h.01"/></svg></span></div>
+        <h3 class="srv-name">Diseño y desarrollo web</h3>
+        <p class="srv-text">Páginas web, tiendas online y aplicaciones modernas: rápidas, prolijas y listas para celular. Desde la idea hasta que está online.</p>
+        <div class="srv-tags"><span class="tag">Web</span><span class="tag">React</span><span class="tag">UX/UI</span><span class="tag">Responsive</span></div>
       </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">04</div>
-      <div class="service-icon">🏦</div>
-      <div class="service-title">Consultoría en sistemas bancarios</div>
-      <div class="service-desc">17 años en bancos y fintech. Asesoramiento en arquitectura, integración con APIs bancarias, seguridad y cumplimiento normativo.</div>
-      <div class="service-tags">
-        <span class="stag">Core bancario</span>
-        <span class="stag">Fideicomisos</span>
-        <span class="stag">APIs financieras</span>
+      <div class="srv-card reveal">
+        <div class="srv-top"><span class="srv-num">04</span><span class="srv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span></div>
+        <h3 class="srv-name">Automatización de procesos</h3>
+        <p class="srv-text">Elimino tareas repetitivas: integraciones entre tus herramientas, reportes automáticos y procesos que hoy hacés a mano.</p>
+        <div class="srv-tags"><span class="tag">Integraciones</span><span class="tag">ETL</span><span class="tag">Reporting</span></div>
       </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">05</div>
-      <div class="service-icon">🛡️</div>
-      <div class="service-title">Auditoría y ciberseguridad de apps</div>
-      <div class="service-desc">Revisión de aplicaciones web con foco en vulnerabilidades, autenticación segura, y mejores prácticas en el stack .NET.</div>
-      <div class="service-tags">
-        <span class="stag">OWASP</span>
-        <span class="stag">Auth</span>
-        <span class="stag">Ciberseguridad UP</span>
+      <div class="srv-card reveal">
+        <div class="srv-top"><span class="srv-num">05</span><span class="srv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.3 1 2.1h6c0-.8.4-1.5 1-2.1A6 6 0 0 0 12 3z"/></svg></span></div>
+        <h3 class="srv-name">Asesoría tecnológica</h3>
+        <p class="srv-text">¿No sabés por dónde arrancar? Te oriento sin tecnicismos: qué necesitás, qué conviene y cómo encararlo bien desde el principio.</p>
+        <div class="srv-tags"><span class="tag">Arquitectura</span><span class="tag">Estrategia</span><span class="tag">Mentoría</span></div>
       </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">06</div>
-      <div class="service-icon">📊</div>
-      <div class="service-title">Data Warehouse & reporting</div>
-      <div class="service-desc">Diseño e implementación de DWH, procesos ETL y dashboards para análisis de datos en organizaciones financieras.</div>
-      <div class="service-tags">
-        <span class="stag">SQL Server</span>
-        <span class="stag">ETL</span>
-        <span class="stag">Power BI</span>
-        <span class="stag">Reporting</span>
+      <div class="srv-card reveal">
+        <div class="srv-top"><span class="srv-num">06</span><span class="srv-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span></div>
+        <h3 class="srv-name">Seguridad y mantenimiento</h3>
+        <p class="srv-text">Reviso, aseguro y modernizo tu software para que sea confiable y escalable. Migración a la nube y soporte continuo.</p>
+        <div class="srv-tags"><span class="tag">OWASP</span><span class="tag">Cloud</span><span class="tag">Soporte</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOBRE MI -->
-<section id="sobre-mi">
-  <div class="about-grid">
-    <div class="about-left">
-      <div class="about-visual">
-        <div class="about-visual-inner">.NET<br>&amp;<br>AI</div>
+<!-- PROCESO -->
+<section id="proceso" class="sec-alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Cómo trabajo</span>
+      <h2 class="sec-title">Simple y sin vueltas</h2>
+      <p class="sec-sub">Trabajo claro, con tiempos y costos definidos desde el principio. Sin sorpresas.</p>
+    </div>
+    <div class="proc-grid">
+      <div class="proc-step reveal">
+        <div class="proc-n">01</div>
+        <div class="proc-t">Charlamos</div>
+        <div class="proc-d">Entiendo tu problema y qué necesitás, sin tecnicismos.</div>
       </div>
-      <div class="about-float">
-        <div class="about-float-num">2025</div>
-        <div class="about-float-lbl">Maestría IA — UdeSA<br>en curso</div>
+      <div class="proc-step reveal">
+        <div class="proc-n">02</div>
+        <div class="proc-t">Propongo</div>
+        <div class="proc-d">Te armo una solución concreta, con tiempos y costo claro.</div>
+      </div>
+      <div class="proc-step reveal">
+        <div class="proc-n">03</div>
+        <div class="proc-t">Construyo</div>
+        <div class="proc-d">Desarrollo con código limpio y te muestro avances reales.</div>
+      </div>
+      <div class="proc-step reveal">
+        <div class="proc-n">04</div>
+        <div class="proc-t">Entrego</div>
+        <div class="proc-d">Lo dejo funcionando y te acompaño con soporte.</div>
       </div>
     </div>
-    <div class="about-right">
-      <div class="section-tag">Sobre mí</div>
-      <h2 class="section-title">Experiencia bancaria.<br>Visión de IA.</h2>
-      <p class="about-text" style="margin-top:20px">
-        Soy <strong>Carina Correjidor</strong>, desarrolladora con más de 17 años trabajando en sistemas financieros para bancos como BNA, Banco de Valores, Banco Hipotecario y proyectos para Macro, Ciudad y Columbia.<br><br>
-        Lo que me diferencia hoy: estoy cursando la <strong>Maestría en Inteligencia Artificial en la Universidad de San Andrés</strong>, lo que me permite combinar experiencia real en producción bancaria con las últimas técnicas de IA aplicada. No vendo IA genérica — la integro donde tiene sentido real en tu sistema.
-      </p>
-      <div class="about-highlights">
-        <div class="highlight-item">
-          <div class="highlight-dot"></div>
-          <div class="highlight-title">Banca & finanzas</div>
-          <div class="highlight-sub">BNA, Banco de Valores, Hipotecario, core bancario Cobis</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-dot"></div>
-          <div class="highlight-title">Maestría en IA</div>
-          <div class="highlight-sub">Universidad de San Andrés, en curso desde 2025</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-dot"></div>
-          <div class="highlight-title">Ciberseguridad</div>
-          <div class="highlight-sub">Diplomatura Universidad de Palermo, 2022</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-dot"></div>
-          <div class="highlight-title">Liderazgo técnico</div>
-          <div class="highlight-sub">Inducción de equipos, decisiones de arquitectura, scrum</div>
+  </div>
+</section>
+
+<!-- TESTIMONIO · OCULTO hasta tener un testimonio real: quitar style="display:none" para mostrarlo -->
+<section id="testimonio" style="display:none">
+  <div class="wrap">
+    <!-- TODO (María Carina): reemplazar el texto y la firma por un testimonio REAL (cliente, líder o colega). Borrar el <span class="q-todo"> cuando esté listo. NUNCA publicar un testimonio inventado. -->
+    <figure class="quote-card reveal">
+      <div class="quote-mark" aria-hidden="true">“</div>
+      <blockquote>Acá va una frase real de alguien con quien trabajaste: qué problema le resolviste y cómo fue trabajar con vos. Una sola línea potente vale más que mil features.</blockquote>
+      <figcaption>
+        <strong>Nombre y Apellido</strong>
+        <span>Cargo · Empresa</span>
+      </figcaption>
+      <span class="q-todo">⚠ Placeholder — reemplazar por testimonio real</span>
+    </figure>
+  </div>
+</section>
+
+<!-- SOBRE MI -->
+<section id="sobre-mi" class="sec-alt">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <span class="kicker">Sobre mí</span>
+        <blockquote class="about-quote">Si un sistema funciona en un <span>banco</span>, funciona en cualquier lado.</blockquote>
+        <p class="about-body" style="margin-top:24px">
+          Detrás de cada proyecto hay <strong>experiencia real</strong> construyendo software exigente para la banca y otros sectores críticos, donde un error no es una opción. Esa misma solidez la traigo a tu proyecto, sea grande o chico.
+        </p>
+        <p class="about-body">
+          Hoy le sumo lo último en <strong>inteligencia artificial</strong>: estoy cursando la Maestría en IA en la Universidad de San Andrés. No vendo tecnología genérica — armo la solución que tu negocio necesita, con un trato cercano y humano.
+        </p>
+        <p class="about-sign">— <strong>Carina Correjidor</strong> · Desarrolladora full-stack &amp; IA</p>
+      </div>
+      <div class="reveal">
+        <div class="creds">
+          <div class="cred"><span class="cred-y">2025 →</span><span class="cred-t">Maestría en Inteligencia Artificial</span><span class="cred-i">UdeSA</span></div>
+          <div class="cred"><span class="cred-y">2022</span><span class="cred-t">Diplomatura en Ciberseguridad</span><span class="cred-i">U. Palermo</span></div>
+          <div class="cred"><span class="cred-y">2022</span><span class="cred-t">Especialista en Data Warehouse &amp; ETL</span><span class="cred-i">UTN FRBA</span></div>
+          <div class="cred"><span class="cred-y">2020</span><span class="cred-t">ASP.NET Core MVC Web Apps</span><span class="cred-i">Educación IT</span></div>
+          <div class="cred"><span class="cred-y">1997-04</span><span class="cred-t">Ing. en Sistemas de Información</span><span class="cred-i">UTN</span></div>
         </div>
       </div>
     </div>
@@ -601,88 +702,215 @@
 
 <!-- STACK -->
 <section id="stack">
-  <div class="section-tag">Stack técnico</div>
-  <h2 class="section-title">Las herramientas<br>con las que trabajo.</h2>
-  <div class="stack-grid">
-    <div class="stack-item"><div class="stack-dot" style="background:#E8EAF6">🔷</div><div><div class="stack-name">.NET Core / 8</div><div class="stack-type">Backend principal</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#E3F2FD">⚡</div><div><div class="stack-name">C# & Web API REST</div><div class="stack-type">Lenguaje & APIs</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#E0F7FA">⚛️</div><div><div class="stack-name">React + TypeScript</div><div class="stack-type">Frontend</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#F3E5F5">🏗️</div><div><div class="stack-name">Clean Architecture</div><div class="stack-type">Arquitectura</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#FFF3E0">🗄️</div><div><div class="stack-name">SQL Server & EF Core</div><div class="stack-type">Base de datos</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#E8F5E9">☁️</div><div><div class="stack-name">Microsoft Azure</div><div class="stack-type">Cloud · AZ-900</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#FCE4EC">🤖</div><div><div class="stack-name">Semantic Kernel</div><div class="stack-type">IA & agentes .NET</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#F9FBE7">🔺</div><div><div class="stack-name">Angular</div><div class="stack-type">Frontend alternativo</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#EDE7F6">🔐</div><div><div class="stack-name">Ciberseguridad</div><div class="stack-type">OWASP · Auth · UP</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#E0F2F1">📊</div><div><div class="stack-name">Data Warehouse & ETL</div><div class="stack-type">Analytics · UTN</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#FFF8E1">📋</div><div><div class="stack-name">Swagger / OpenAPI</div><div class="stack-type">Documentación APIs</div></div></div>
-    <div class="stack-item"><div class="stack-dot" style="background:#E8EAF6">🔄</div><div><div class="stack-name">Scrum / Agile</div><div class="stack-type">Marco de trabajo</div></div></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Stack</span>
+      <h2 class="sec-title">Con qué trabajo</h2>
+      <p class="sec-sub">Tecnologías sólidas y probadas, elegidas según lo que tu proyecto necesita — no por moda.</p>
+    </div>
+    <div class="chips">
+      <span class="chip">.NET Core / 8</span>
+      <span class="chip">C# · Web API</span>
+      <span class="chip">React + TypeScript</span>
+      <span class="chip">Angular</span>
+      <span class="chip">Clean Architecture</span>
+      <span class="chip">SQL Server · EF Core</span>
+      <span class="chip">Microsoft Azure</span>
+      <span class="chip">Semantic Kernel · IA</span>
+      <span class="chip">Data Warehouse · ETL</span>
+      <span class="chip">Ciberseguridad · OWASP</span>
+      <span class="chip">Swagger / OpenAPI</span>
+      <span class="chip">Scrum / Agile</span>
+    </div>
   </div>
 </section>
 
-<!-- FORMACION -->
-<section id="formacion">
-  <div class="section-tag">Formación</div>
-  <h2 class="section-title">Credenciales que<br>respaldan el trabajo.</h2>
-  <p class="section-sub">Combinación de ingeniería clásica, especialización financiera y formación de vanguardia en IA.</p>
-  <div class="edu-grid">
-    <div class="edu-card gold">
-      <div class="edu-year">2025 — ACTUAL</div>
-      <div class="edu-card-title">Maestría en Inteligencia Artificial</div>
-      <div class="edu-card-inst">Universidad de San Andrés</div>
+<!-- FAQ -->
+<section id="faq" class="sec-alt">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="kicker">Preguntas frecuentes</span>
+      <h2 class="sec-title">Antes de escribirme</h2>
     </div>
-    <div class="edu-card">
-      <div class="edu-year">2022</div>
-      <div class="edu-card-title">Diplomatura en Ciberseguridad</div>
-      <div class="edu-card-inst">Universidad de Palermo</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-year">2022</div>
-      <div class="edu-card-title">Especialista en Data Warehouse & ETL</div>
-      <div class="edu-card-inst">UTN FRBA · e-Learning</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-year">2020</div>
-      <div class="edu-card-title">Azure Fundamentals AZ-900</div>
-      <div class="edu-card-inst">Microsoft</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-year">2020</div>
-      <div class="edu-card-title">ASP.NET Core MVC Web Apps</div>
-      <div class="edu-card-inst">Educación IT</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-year">1997 — 2003</div>
-      <div class="edu-card-title">Ing. en Sistemas de Información</div>
-      <div class="edu-card-inst">Universidad Tecnológica Nacional</div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">¿Trabajás con proyectos chicos o solo grandes?<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Los dos. La misma solidez que aplico a sistemas críticos la llevo a un proyecto chico — lo que cambia es el alcance, no el cuidado ni la calidad.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">¿Trabajás de forma remota?<span class="ic" aria-hidden="true"></span></button>
+        <!-- TODO (María Carina): confirmar/ajustar esta respuesta -->
+        <div class="faq-a"><div><p>Sí. Trabajo con clientes de forma remota y también presencial en Buenos Aires. Nos coordinamos como te quede más cómodo.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">¿Cómo son los costos?<span class="ic" aria-hidden="true"></span></button>
+        <!-- TODO (María Carina): confirmar/ajustar esta respuesta -->
+        <div class="faq-a"><div><p>Cada proyecto es distinto. Después de una primera charla sin compromiso te paso un presupuesto cerrado, con alcance y tiempos claros — sin sorpresas a mitad de camino.</p></div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false">¿Cuánto tarda un proyecto?<span class="ic" aria-hidden="true"></span></button>
+        <div class="faq-a"><div><p>Depende del alcance, pero lo definimos juntos desde el principio. Vas a tener tiempos estimados antes de arrancar y avances reales durante todo el proceso.</p></div></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACTO -->
 <section id="contacto">
-  <div class="contact-wrapper">
-    <div class="section-tag">Contacto</div>
-    <h2 class="section-title">Hablemos de<br>tu proyecto.</h2>
-    <p class="section-sub">Consultame sin compromiso. Respondo en menos de 24 horas hábiles.</p>
-    <div class="contact-methods">
-      <a href="mailto:carinacorrejidor@outlook.com" class="contact-method">
-        <span>✉</span> carinacorrejidor@outlook.com
-      </a>
-      <a href="https://linkedin.com/in/carinacorrejidor" target="_blank" class="contact-method">
-        <span>🔗</span> LinkedIn
-      </a>
-      <a href="cv.html" class="contact-method">
-        <span>📄</span> Ver CV
-      </a>
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <span class="kicker">Contacto</span>
+      <h2 class="sec-title">¿Arrancamos tu proyecto?</h2>
+      <p class="contact-lead">Consultame sin compromiso. Respondo en menos de 24 horas hábiles.</p>
+      <!-- TODO (María Carina): crear cuenta gratis en web3forms.com y pegar tu Access Key en value="..." -->
+      <form class="contact-form" id="contactForm">
+        <input type="hidden" name="access_key" value="TU-ACCESS-KEY-WEB3FORMS">
+        <input type="hidden" name="subject" value="Nueva consulta desde el landing">
+        <input type="hidden" name="from_name" value="Landing soluciones.ia">
+        <!-- honeypot anti-spam: debe quedar vacío -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none !important">
+        <div class="cf-row">
+          <input type="text" name="name" placeholder="Tu nombre" required autocomplete="name" aria-label="Tu nombre">
+          <input type="email" name="email" placeholder="Tu email" required autocomplete="email" aria-label="Tu email">
+        </div>
+        <textarea name="message" placeholder="Contame brevemente tu proyecto o consulta" required aria-label="Tu mensaje"></textarea>
+        <button type="submit">Enviar mensaje</button>
+        <p class="cf-status" id="cfStatus" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div>© 2026 <strong>Carina Correjidor</strong> — Sr. .NET Developer & AI Solutions</div>
-  <div>Villa Crespo, Buenos Aires · Argentina</div>
+  <div class="footer-inner">
+    <a href="#top" class="nav-logo"><span class="di">◆</span> soluciones<b>.ia</b></a>
+    <nav class="foot-nav" aria-label="Navegación del pie">
+      <a href="#servicios">servicios</a>
+      <a href="#proceso">proceso</a>
+      <a href="#sobre-mi">sobre mí</a>
+      <a href="#stack">stack</a>
+      <a href="#contacto">contacto</a>
+    </nav>
+    <p class="foot-copy">© 2026 soluciones.ia · Buenos Aires, Argentina</p>
+  </div>
 </footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<!-- TODO (María Carina): reemplazar NUMERO-A-DEFINIR por tu número en formato internacional, sin + ni espacios (ej: 5491112345678) -->
+<a href="https://wa.me/NUMERO-A-DEFINIR?text=Hola%20Carina%2C%20vi%20tu%20web%20y%20quiero%20hacerte%20una%20consulta." class="wa-float" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.78 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.02M12.04 20.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43-.14 0-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28"/></svg>
+</a>
+
+<script>
+  // Menú hamburguesa
+  const navToggle = document.getElementById('navToggle');
+  const menu = document.getElementById('menu');
+  const setMenu = (open) => {
+    menu.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open);
+    navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    document.body.classList.toggle('menu-open', open);
+  };
+  navToggle.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+
+  // Fondo del nav al scrollear
+  const navEl = document.querySelector('.site-nav');
+  const onScroll = () => navEl.classList.toggle('scrolled', window.scrollY > 20);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Indicador de sección activa (scroll spy)
+  const spyLinks = document.querySelectorAll('.nav-links a[data-sec]');
+  const spyMap = {};
+  spyLinks.forEach((a) => { spyMap[a.dataset.sec] = a; });
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        spyLinks.forEach((a) => a.classList.remove('active'));
+        if (spyMap[e.target.id]) spyMap[e.target.id].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  ['servicios', 'proceso', 'sobre-mi', 'stack', 'contacto'].forEach((id) => {
+    const s = document.getElementById(id);
+    if (s) spy.observe(s);
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Count-up de métricas
+  const statsBox = document.querySelector('.proof-stats');
+  if (statsBox && !reduce) {
+    const animateCount = (el) => {
+      const target = parseInt(el.dataset.count, 10);
+      const prefix = el.dataset.prefix || '';
+      const dur = 1100, start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = prefix + Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(tick); else el.textContent = prefix + target;
+      };
+      requestAnimationFrame(tick);
+    };
+    const co = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { animateCount(e.target); co.unobserve(e.target); } });
+    }, { threshold: 0.6 });
+    statsBox.querySelectorAll('.n[data-count]').forEach((n) => co.observe(n));
+  }
+
+  // FAQ acordeón
+  document.querySelectorAll('.faq-q').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+  });
+
+  // Formulario de contacto (Web3Forms, envío AJAX sin recargar)
+  const form = document.getElementById('contactForm');
+  if (form) {
+    const status = document.getElementById('cfStatus');
+    const btn = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.className = 'cf-status';
+      status.textContent = 'Enviando…';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const json = await res.json();
+        if (json.success) {
+          form.reset();
+          status.className = 'cf-status ok';
+          status.textContent = '¡Gracias! Te respondo a la brevedad.';
+        } else {
+          status.className = 'cf-status err';
+          status.textContent = 'Hubo un problema. Probá de nuevo o escribime por WhatsApp.';
+        }
+      } catch (err) {
+        status.className = 'cf-status err';
+        status.textContent = 'No se pudo enviar. Revisá tu conexión o escribime por WhatsApp.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+</script>
 
 </body>
 </html>

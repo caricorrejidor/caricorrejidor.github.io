@@ -7,17 +7,19 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:      #F7F9F8;
-    --surf:    #D4EEEE;
-    --surf2:   #C0E4E4;
-    --border:  #8ABFBF;
-    --border2: #4A9A9A;
-    --rose:    #0D6B6B;
-    --rose2:   #0A4A4A;
-    --ink:     #061E1E;
-    --ink2:    #0F2E2E;
-    --ink3:    #1A4A4A;
-    --muted:   #2A7070;
+    --bg:      #FFFFFF;
+    --surf:    #E9E0F6;
+    --surf2:   #E7E0F2;
+    --border:  #D5CCE4;
+    --border2: #A99CC0;
+    --rose:    #684FA3;
+    --rose2:   #4F3C7D;
+    --terra:   #BC6A4F;
+    --terra2:  #8F4A33;
+    --ink:     #111827;
+    --ink2:    #1F2937;
+    --ink3:    #374151;
+    --muted:   #564F63;
     --mono:    'JetBrains Mono', monospace;
     --sans:    'DM Sans', sans-serif;
   }
@@ -36,9 +38,9 @@
     width: 210mm;
     min-height: 297mm;
     background: var(--bg);
-    padding: 8.5mm 11mm 8.5mm;
-    border-left: 7px solid #C89800;
-    border-top: 3px solid #0D6B6B;
+    padding: 6mm 11mm 6mm;
+    border-left: 5px solid #684FA3;
+    border-top: 2px solid #684FA3;
   }
 
   /* ── HEADER ── */
@@ -76,29 +78,17 @@
     border-bottom: 1.5px solid var(--border);
     margin-bottom: 9px;
   }
-  .badges { display: flex; flex-wrap: wrap; gap: 6px; }
-  .badge {
-    font-family: var(--mono);
-    font-size: 9px;
-    padding: 2px 10px;
-    border: 1px solid var(--border2);
-    color: var(--muted);
-    border-radius: 20px;
-  }
-  .badge.hi  { border-color: var(--rose);  color: var(--rose);  background: rgba(184,112,80,.06); }
-  .badge.hi2 { border-color: #C89800; color: #7A5800; background: rgba(200,160,32,.07); }
-
   /* ── PROFILE ── */
   .profile {
     font-size: 11px;
     color: var(--ink3);
-    line-height: 1.66;
+    line-height: 1.5;
     background: var(--surf);
     border: none;
     border-left: 3px solid var(--rose);
     padding: 8px 11px;
     margin-bottom: 9px;
-    font-weight: 300;
+    font-weight: 400;
   }
   .profile strong { color: var(--ink); font-weight: 600; }
 
@@ -110,13 +100,13 @@
     letter-spacing: 0.18em;
     border-bottom: 1.5px solid var(--border);
     padding-bottom: 3px;
-    margin-bottom: 7px;
-    margin-top: 9px;
+    margin-bottom: 5px;
+    margin-top: 6px;
   }
   .sec::before { content: '// '; color: var(--border2); }
 
   /* ── JOB ── */
-  .job { margin-bottom: 11px; }
+  .job { margin-bottom: 7px; }
   .job-head {
     display: flex;
     justify-content: space-between;
@@ -149,14 +139,14 @@
     margin-bottom: 3px;
     font-weight: 500;
   }
-  .bullets { list-style: none; margin-bottom: 7px; }
+  .bullets { list-style: none; margin-bottom: 6px; }
   .bullets li {
     font-size: 11px;
     color: var(--ink3);
-    line-height: 1.62;
+    line-height: 1.48;
     padding: 1px 0 1px 16px;
     position: relative;
-    font-weight: 300;
+    font-weight: 400;
   }
   .bullets li::before {
     content: '›';
@@ -168,6 +158,7 @@
     font-weight: 700;
   }
   .bullets li strong { color: var(--ink); font-weight: 600; }
+  .bullets li strong.ia { color: var(--terra2); }
   .stack-inline {
     font-family: var(--mono);
     font-size: 9px;
@@ -178,7 +169,7 @@
 
   /* ── PREV ── */
   .prev { display: flex; flex-direction: column; gap: 5px; }
-  .prev-item { font-size: 11px; font-weight: 300; color: var(--ink3); }
+  .prev-item { font-size: 11px; font-weight: 400; color: var(--ink3); }
   .prev-item strong { color: var(--ink2); font-weight: 600; }
 
   /* ── BOTTOM GRID ── */
@@ -189,7 +180,7 @@
     margin-top: 3px;
   }
 
-  /* ── STACK OPCIÓN 3: grid 2x2 con borde izquierdo ── */
+  /* ── STACK: grid 2x2 con borde izquierdo ── */
   .stack-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -202,8 +193,8 @@
     border-left: 2px solid var(--rose);
   }
   .stack-cell.ia {
-    border-left-color: #C89800;
-    background: #FFF4C0;
+    border-left-color: var(--terra);
+    background: #F3E1D9;
   }
   .stack-cat {
     font-family: var(--mono);
@@ -213,21 +204,27 @@
     text-transform: uppercase;
     margin-bottom: 5px;
   }
-  .stack-cell.ia .stack-cat { color: #8A6400; }
+  .stack-cell.ia .stack-cat { color: var(--terra2); }
   .stack-vals {
     font-family: var(--mono);
     font-size: 9.5px;
     color: var(--ink3);
     line-height: 1.6;
   }
-  .stack-cell.ia .stack-vals { color: #6A4800; }
+  .stack-cell.ia .stack-vals { color: var(--terra2); }
+  .stack-sub {
+    font-family: var(--mono);
+    font-size: 8px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
 
-  /* ── EDU OPCIÓN 3: lista limpia sin marco ── */
+  /* ── EDU: lista limpia sin marco ── */
   .edu-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 5px 0;
+    padding: 4px 0;
     border-bottom: 1px dotted var(--border);
   }
   .edu-row:last-child { border: none; }
@@ -238,7 +235,7 @@
     color: var(--ink2);
     line-height: 1.4;
   }
-  .edu-row-title.star { color: #C89000; }
+  .edu-row-title.star { color: var(--terra); }
   .edu-row-year {
     font-family: var(--mono);
     font-size: 8.5px;
@@ -260,12 +257,12 @@
     display: flex;
     justify-content: space-between;
     font-size: 11px;
-    padding: 4px 0;
+    padding: 3px 0;
     border-bottom: 1px solid var(--border);
   }
   .lang-row:last-child { border: none; }
   .lang-row strong { color: var(--ink2); font-weight: 600; }
-  .lang-row span { color: var(--muted); }
+  .lang-row span { color: var(--muted); font-family: var(--mono); font-size: 9.5px; }
 
   .contact-row {
     font-family: var(--mono);
@@ -278,7 +275,7 @@
   .contact-row a { color: var(--rose); text-decoration: none; }
   @media print {
     html, body { background: var(--bg) !important; }
-    .page { border-left: 7px solid #C89800 !important; border-top: 3px solid #0D6B6B !important; }
+    .page { border-left: 5px solid #684FA3 !important; border-top: 2px solid #684FA3 !important; }
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   }
 </style>
@@ -292,21 +289,22 @@
   <div class="role">Full Stack Developer · Fintech &amp; Banca &nbsp;·&nbsp; Buenos Aires</div>
 
   <div class="contact-row">
-      <span>carinacorrejidor@outlook.com</span>
+      <a href="mailto:carinacorrejidor@outlook.com">carinacorrejidor@outlook.com</a>
       <span>&nbsp;·&nbsp;</span>
       <a href="https://linkedin.com/in/carinacorrejidor">linkedin.com/in/carinacorrejidor</a>
       <span>&nbsp;·&nbsp;</span>
-      <a href="index.html">sitio web</a>
+      <a href="https://caricorrejidor.github.io/cv/">sitio web</a>
   </div>
 
   <!-- PERFIL -->
   <div class="profile">
-    Desarrollo de soluciones financieras para los principales bancos de Argentina — desde APIs REST hasta interfaces Blazor y React. Especializada en <strong>Clean Architecture</strong> y ecosistema <strong>.NET</strong>, con foco en calidad, performance y seguridad.<br>
-    Cursando <strong>Maestría en Inteligencia Artificial</strong>, aplicando IA al ciclo completo de desarrollo.<br>Disponible para proyectos y contratos freelance.
+    Desarrolladora full stack y <strong>referente técnica</strong> en los principales bancos de Argentina — desde core bancario y APIs REST hasta interfaces Blazor y React. Especializada en <strong>Clean Architecture</strong> y ecosistema <strong>.NET</strong>, con foco en calidad, performance y seguridad.<br>
+    Cursando <strong>Maestría en Inteligencia Artificial (UdeSA)</strong>, aplico IA al desarrollo de soluciones bancarias.<br>
+    <strong>Objetivo:</strong> aportar como referente técnica en banca y fintech, integrando IA aplicada al negocio para construir productos financieros confiables, seguros y de alto impacto.
   </div>
 
   <!-- EXPERIENCIA -->
-  <div class="sec" style="margin-top: 14px;">Experiencia</div>
+  <div class="sec" style="margin-top: 8px;">Experiencia</div>
 
   <div class="job">
     <div class="job-head">
@@ -315,12 +313,13 @@
     </div>
     <div class="job-company">Banco de la Nación Argentina</div>
     <ul class="bullets">
-      <li>Lideré end-to-end <strong>5 productos crediticios digitales</strong>: Tienda BNA, MAS Autos, MAS Agro, AL Préstamos y Más Personas.</li>
-      <li>Desarrollé <strong>backoffice institucional en Blazor</strong> centralizando factibilidades crediticias + <strong>PoC de IA con base de datos vectorial</strong>.</li>
-      <li>Implementación de integraciones mediante webhooks y manejo de idempotencia para procesos críticos de negocio.</li>
-      <li>Referente técnica y funcional: backlog, sprints y coordinación entre producto, ops y compliance.</li>
+      <li>Lideré end-to-end <strong>5 productos crediticios digitales</strong> (Tienda BNA, MAS Autos, MAS Agro, Préstamos Personas y AL Préstamos), desde el diseño hasta el despliegue en producción, integrando múltiples sistemas en procesos críticos con patrones de <strong>sistemas distribuidos</strong> (webhooks, idempotencia).</li>
+      <li><strong>Desarrollo asistido por IA</strong> con GitHub Copilot y Claude: creación de <strong class="ia">skills y agentes propios</strong> bajo <strong>Spec-Driven Development (SDD)</strong>.</li>
+      <li><strong>Experiencia en IA generativa</strong>: chatbot con arquitectura <strong>RAG</strong> sobre bases de datos vectoriales y modelos de lenguaje locales.</li>
+      <li>Desarrollé un <strong>backoffice institucional en Blazor</strong> que centralizó las <strong>factibilidades crediticias</strong> en una sola plataforma, reemplazando procesos manuales.</li>
+      <li>Referente técnica y funcional: gestión de backlog y sprints, y coordinación entre producto, operaciones y compliance.</li>
     </ul>
-    <div class="stack-inline">.NET · Blazor · Clean Architecture · React · TypeScript · SQL Server · GitHub Copilot</div>
+    <div class="stack-inline">.NET · Blazor · Clean Architecture · Vertical Slice · React · TypeScript · SQL Server · RAG · Vector DB · GitHub Copilot</div>
   </div>
 
   <div class="job">
@@ -330,7 +329,8 @@
     </div>
     <div class="job-company">Practia Global</div>
     <ul class="bullets">
-      <li>Liderazgo técnico de soluciones web para <strong>sector energético</strong> en consultora global. Mentoría e inducción del equipo en el stack completo.</li>
+      <li>Lideré técnicamente las soluciones web para el <strong>sector energético</strong> en una consultora global, definiendo arquitectura y estándares del stack .NET + Angular.</li>
+      <li>Mentoré e induje a un equipo de <strong>3 desarrolladores</strong> en el stack completo .NET + Angular.</li>
     </ul>
     <div class="stack-inline">.NET · Angular · Angular Material · SQL Server</div>
   </div>
@@ -342,7 +342,8 @@
     </div>
     <div class="job-company">Accusys Technology</div>
     <ul class="bullets">
-      <li>Core Cobis para <strong>5 entidades financieras</strong>: Banco Macro, Ciudad, Columbia, BTS y Facebank. Módulos de cuentas corrientes, eCheques e integración Coelsa.</li>
+      <li>Desarrollé módulos del <strong>core bancario Cobis</strong> (cuentas corrientes) para <strong>5 entidades financieras</strong>: Banco Macro, Ciudad, Columbia, BTS y Facebank.</li>
+      <li>Implementé la operatoria de <strong>eCheq</strong> (cheque electrónico) —entonces normativa nueva del BCRA— integrando el core con la cámara compensadora <strong>Coelsa</strong>.</li>
     </ul>
     <div class="stack-inline">.NET · Cobis · Sybase · Scrum</div>
   </div>
@@ -354,7 +355,8 @@
     </div>
     <div class="job-company">Banco de Valores S.A.</div>
     <ul class="bullets">
-      <li>Apps .NET para <strong>administración de fideicomisos</strong> en banco de mercado de capitales. APIs REST con Design Patterns adoptados por el equipo.</li>
+      <li>Desarrollé aplicaciones .NET para la <strong>administración de fideicomisos</strong> en un banco de mercado de capitales.</li>
+      <li>Diseñé <strong>APIs REST con Design Patterns</strong> que el equipo adoptó como estándar para los desarrollos posteriores.</li>
     </ul>
     <div class="stack-inline">.NET · API REST · Design Patterns · SQL Server</div>
   </div>
@@ -369,17 +371,18 @@
   <!-- BOTTOM GRID -->
   <div class="bottom-grid">
 
-    <!-- STACK: opción 3 — grid 2x2 con borde izquierdo -->
+    <!-- STACK: core vs familiar -->
     <div>
       <div class="sec">Stack Técnico</div>
       <div class="stack-grid">
         <div class="stack-cell">
-          <div class="stack-cat">backend</div>
-          <div class="stack-vals">.NET · Node.js · Python · Java · Clean Arch · REST APIs</div>
+          <div class="stack-cat">backend · core</div>
+          <div class="stack-vals">.NET · C# · Clean Arch · REST APIs</div>
+          <div class="stack-sub">familiar: Node.js · Python · Java</div>
         </div>
         <div class="stack-cell">
           <div class="stack-cat">frontend</div>
-          <div class="stack-vals">Blazor · React · TypeScript · Angular · Angular Material</div>
+          <div class="stack-vals">Blazor · React · TypeScript · Angular</div>
         </div>
         <div class="stack-cell">
           <div class="stack-cat">datos</div>
@@ -387,12 +390,12 @@
         </div>
         <div class="stack-cell ia">
           <div class="stack-cat">ia &amp; herramientas</div>
-          <div class="stack-vals">AI/ML · Skills IA · MCP · Agent · GitHub Copilot · Vector DB</div>
+          <div class="stack-vals">Claude · Copilot · MCP · skills & agentes · RAG · Semantic Kernel · Azure OpenAI</div>
         </div>
       </div>
     </div>
 
-    <!-- EDU: opción 3 — lista con dotted border, sin marco -->
+    <!-- EDU + IDIOMAS -->
     <div>
       <div class="sec">Educación</div>
       <div class="edu-row">
@@ -404,16 +407,13 @@
         <div class="edu-row-year">UP · 2022</div>
       </div>
       <div class="edu-row">
-        <div class="edu-row-title">Ingeniería en Sistemas</div>
-        <div class="edu-row-year">UTN</div>
+        <div class="edu-row-title">Ing. en Sistemas de Información</div>
+        <div class="edu-row-year">UTN · 1997–2004</div>
       </div>
 
-      <div class="sec" style="margin-top:8px;">Certificaciones</div>
-      <div class="cert-inline">
-        AZ-900 Microsoft Azure<br>
-        DWH &amp; ETL · UTN FRBA<br>
-        ReactJS · ASP.NET Core MVC
-      </div>
+      <div class="sec" style="margin-top:8px;">Idiomas</div>
+      <div class="lang-row"><strong>Español</strong> <span>Nativo</span></div>
+      <div class="lang-row"><strong>Inglés</strong> <span>Básico · lectura técnica</span></div>
 
     </div>
 
