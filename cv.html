@@ -14,8 +14,6 @@
     --border2: #A99CC0;
     --rose:    #684FA3;
     --rose2:   #4F3C7D;
-    --terra:   #BC6A4F;
-    --terra2:  #8F4A33;
     --ink:     #111827;
     --ink2:    #1F2937;
     --ink3:    #374151;
@@ -38,7 +36,7 @@
     width: 210mm;
     min-height: 297mm;
     background: var(--bg);
-    padding: 6mm 11mm 6mm;
+    padding: 6mm 11mm 4mm;
     border-left: 5px solid #684FA3;
     border-top: 2px solid #684FA3;
   }
@@ -50,7 +48,16 @@
     color: var(--muted);
     letter-spacing: 0.1em;
     margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
   }
+  .sdot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #5FB59A;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1; transform:scale(1)} 50%{opacity:.4; transform:scale(1.3)} }
   .name {
     font-family: var(--mono);
     font-size: 30px;
@@ -83,10 +90,8 @@
     font-size: 11px;
     color: var(--ink3);
     line-height: 1.5;
-    background: var(--surf);
-    border: none;
     border-left: 3px solid var(--rose);
-    padding: 8px 11px;
+    padding: 4px 0 4px 12px;
     margin-bottom: 9px;
     font-weight: 400;
   }
@@ -101,12 +106,12 @@
     border-bottom: 1.5px solid var(--border);
     padding-bottom: 3px;
     margin-bottom: 5px;
-    margin-top: 6px;
+    margin-top: 5px;
   }
   .sec::before { content: '// '; color: var(--border2); }
 
   /* ── JOB ── */
-  .job { margin-bottom: 7px; }
+  .job { margin-bottom: 6px; }
   .job-head {
     display: flex;
     justify-content: space-between;
@@ -143,7 +148,7 @@
   .bullets li {
     font-size: 11px;
     color: var(--ink3);
-    line-height: 1.48;
+    line-height: 1.46;
     padding: 1px 0 1px 16px;
     position: relative;
     font-weight: 400;
@@ -158,7 +163,7 @@
     font-weight: 700;
   }
   .bullets li strong { color: var(--ink); font-weight: 600; }
-  .bullets li strong.ia { color: var(--terra2); }
+  .bullets li strong.ia { color: var(--rose); }
   .stack-inline {
     font-family: var(--mono);
     font-size: 9px;
@@ -184,17 +189,16 @@
   .stack-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    margin-top: 2px;
+    gap: 10px;
+    margin-top: 5px;
   }
   .stack-cell {
-    padding: 6px 8px;
-    background: var(--surf);
-    border-left: 2px solid var(--rose);
+    padding: 6px 0 6px 10px;
+    border-left: 2px solid var(--border2);
   }
   .stack-cell.ia {
-    border-left-color: var(--terra);
-    background: #F3E1D9;
+    border-left: 3px solid var(--rose);
+    padding: 4px 0 4px 10px;
   }
   .stack-cat {
     font-family: var(--mono);
@@ -204,14 +208,22 @@
     text-transform: uppercase;
     margin-bottom: 5px;
   }
-  .stack-cell.ia .stack-cat { color: var(--terra2); }
+  .stack-cat::before { content: '// '; color: var(--border2); }
+  .stack-cell.ia .stack-cat { color: var(--rose); }
   .stack-vals {
     font-family: var(--mono);
     font-size: 9.5px;
     color: var(--ink3);
     line-height: 1.6;
   }
-  .stack-cell.ia .stack-vals { color: var(--terra2); }
+  .stack-cell.ia .stack-vals { color: var(--ink3); }
+  .stack-cell.ia .cur {
+    display: inline-block; width: 6px; height: 11px;
+    background: #5FB59A; margin-left: 4px; vertical-align: -1px;
+    box-shadow: 0 0 6px #5FB59A, 0 0 11px rgba(95,181,154,0.6);
+    animation: curblink 1.1s steps(1) infinite;
+  }
+  @keyframes curblink { 0%,50%{opacity:1} 51%,100%{opacity:0} }
   .stack-sub {
     font-family: var(--mono);
     font-size: 8px;
@@ -235,11 +247,15 @@
     color: var(--ink2);
     line-height: 1.4;
   }
-  .edu-row-title.star { color: var(--terra); }
+  .edu-row-title.star { color: var(--rose); }
   .edu-row-year {
     font-family: var(--mono);
-    font-size: 8.5px;
+    font-size: 8px;
     color: var(--muted);
+    background: var(--surf2);
+    padding: 2px 8px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
     white-space: nowrap;
     margin-left: 8px;
     flex-shrink: 0;
@@ -262,7 +278,7 @@
   }
   .lang-row:last-child { border: none; }
   .lang-row strong { color: var(--ink2); font-weight: 600; }
-  .lang-row span { color: var(--muted); font-family: var(--mono); font-size: 9.5px; }
+  .lang-row span { color: var(--muted); font-family: var(--mono); font-size: 8.5px; background: var(--surf2); padding: 2px 9px; border-radius: 20px; border: 1px solid var(--border); }
 
   .contact-row {
     font-family: var(--mono);
@@ -284,9 +300,9 @@
 <div class="page">
 
   <!-- HEADER -->
-  <div class="prompt">// senior_developer</div>
+  <div class="prompt"><span>// senior_developer</span><span class="sdot"></span></div>
   <div class="name">CARINA <span>CORREJIDOR</span></div>
-  <div class="role">Full Stack Developer · Fintech &amp; Banca &nbsp;·&nbsp; Buenos Aires</div>
+  <div class="role">Full Stack Developer · IA Aplicada · Fintech &amp; Banca &nbsp;·&nbsp; Buenos Aires</div>
 
   <div class="contact-row">
       <a href="mailto:carinacorrejidor@outlook.com">carinacorrejidor@outlook.com</a>
@@ -376,9 +392,8 @@
       <div class="sec">Stack Técnico</div>
       <div class="stack-grid">
         <div class="stack-cell">
-          <div class="stack-cat">backend · core</div>
-          <div class="stack-vals">.NET · C# · Clean Arch · REST APIs</div>
-          <div class="stack-sub">familiar: Node.js · Python · Java</div>
+          <div class="stack-cat">backend</div>
+          <div class="stack-vals">.NET · C# · Clean Architecture · REST APIs · Node.js · Python</div>
         </div>
         <div class="stack-cell">
           <div class="stack-cat">frontend</div>
@@ -390,7 +405,7 @@
         </div>
         <div class="stack-cell ia">
           <div class="stack-cat">ia &amp; herramientas</div>
-          <div class="stack-vals">Claude · Copilot · MCP · skills & agentes · RAG · Semantic Kernel · Azure OpenAI</div>
+          <div class="stack-vals">Claude · Copilot · MCP · skills & agentes · RAG · Azure OpenAI<span class="cur"></span></div>
         </div>
       </div>
     </div>
