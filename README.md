@@ -5,7 +5,7 @@
 <h1 align="center">Sitio de Carina Correjidor</h1>
 
 <p align="center">
-  Sitio personal + blog + CV, hecho en <a href="https://astro.build">Astro</a>.<br>
+  Sitio personal + blog, hecho en <a href="https://astro.build">Astro</a>.<br>
   🔗 En vivo: <a href="https://caricorrejidor.github.io/">caricorrejidor.github.io</a>
 </p>
 
@@ -15,24 +15,34 @@
 
 ## 🗂️ Estructura
 
-El proyecto Astro vive en `sitio/`. En la raíz quedan solo este README y la config de GitHub.
+Sitio hecho con **Astro 5**. El proyecto vive en `sitio/`. En la raíz quedan solo este README y la config de GitHub.
 
 ```
 .
 ├── README.md
 ├── .github/workflows/deploy.yml   despliegue automático
 └── sitio/
-    ├── astro.config.mjs           site + base '/'
+    ├── astro.config.mjs           site caricorrejidor.github.io + base '/'
+    ├── package.json               Astro ^5.6.0
     ├── src/
     │   ├── pages/
     │   │   ├── index.astro        la landing (ensambla los componentes)
-    │   │   └── notas/             el blog: lista + post individual
+    │   │   └── notas/
+    │   │       ├── index.astro    lista del blog
+    │   │       └── [...slug].astro post individual
     │   ├── layouts/Base.astro     layout del blog
-    │   ├── components/            Header, Footer + cada sección de la landing
+    │   ├── content.config.ts      colección "blog" tipada (Markdown)
+    │   ├── components/            Header, Footer + 10 secciones de la landing
     │   ├── content/blog/          los posts en Markdown
     │   └── styles/                global.css (blog) · landing.css (landing)
     └── public/                    favicon.svg (mascota), avatar.svg
 ```
+
+**Componentes de la landing** (`src/components/`, ensamblados en `index.astro`):
+`Header` · `Hero` · `ProofBand` · `Servicios` · `Proceso` · `Testimonio` · `SobreMi` · `Stack` · `Faq` · `Contacto` · `WhatsappFloat` · `Footer`.
+
+**Posts del blog** (`src/content/blog/`, hoy de ejemplo):
+*RAG sin humo* · *¿Qué es MCP (Model Context Protocol)?* · *Mi setup de IA*.
 
 ## 🚀 Desarrollo
 
